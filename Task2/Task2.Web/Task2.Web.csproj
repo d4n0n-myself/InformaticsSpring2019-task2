@@ -25,6 +25,12 @@
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Task2.Core\Task2.Core.csproj" />
+      <ProjectReference Include="..\Task2.Domain\Task2.Domain.csproj" />
+      <ProjectReference Include="..\Task2.Infrastructure\Task2.Infrastructure.csproj" />
+    </ItemGroup>
+
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->
         <Exec Command="node --version" ContinueOnError="true">
