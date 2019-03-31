@@ -1,11 +1,11 @@
 {
-  "name": "Task2.Web",
+  "name": "Task2.Web2",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng run Task2.Web:server:dev",
+    "build:ssr": "ng run Task2.Web2:server:dev",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

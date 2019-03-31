@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Task2": {
+    "Task2.Web2": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -52,18 +52,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Task2.Web:build"
+            "browserTarget": "Task2.Web2:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Task2.Web:build:production"
+              "browserTarget": "Task2.Web2:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Task2.Web:build"
+            "browserTarget": "Task2.Web2:build"
           }
         },
         "test": {
@@ -122,7 +122,7 @@
         }
       }
     },
-    "Task2-e2e": {
+    "Task2.Web2-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -130,7 +130,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Task2.Web:serve"
+            "devServerTarget": "Task2.Web2:serve"
           }
         },
         "lint": {
@@ -145,5 +145,5 @@
       }
     }
   },
-  "defaultProject": "Task2.Web"
+  "defaultProject": "Task2.Web2"
 }

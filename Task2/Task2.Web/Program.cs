@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Task2.Infrastructure;
 
-namespace Task2
+namespace Task2.Web
 {
 	public class Program
 	{
 		public static void Main(string[] args)
 		{
+			using(var context = new ApplicationContext())
+			{}
 			CreateWebHostBuilder(args).Build().Run();
 		}
 
