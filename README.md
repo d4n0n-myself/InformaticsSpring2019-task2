@@ -3,6 +3,8 @@
 Artifacts : 
 [Patreon NeSkuSound](https://www.patreon.com/NeSkuSound)
 
+[Board](https://github.com/d4n0n-myself/InformaticsSpring2019-task2/projects/1)
+
 #### роли:
 
 1. хозяин патриона
