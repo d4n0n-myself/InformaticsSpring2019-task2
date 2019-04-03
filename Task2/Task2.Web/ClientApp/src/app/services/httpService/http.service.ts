@@ -23,7 +23,7 @@ export class HttpService {
   }
 
   getForecast(): Observable<WeatherForecast[]> {
-    let url = `${this.baseUrl}api/SampleData/WeatherForecasts`;
+    let url = `${this.baseUrl}SampleData/WeatherForecasts`;
     return this.http.get<WeatherForecast[]>(url, this.httpOptions)
   }
 }

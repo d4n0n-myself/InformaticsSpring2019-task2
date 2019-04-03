@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Task2.Web.Controllers
 {
 	[Authorize]
-	[Route("api/[controller]")]
+	[Route("[controller]/[action]")]
 	public class SampleDataController : Controller
 	{
 		private static string[] Summaries = new[]

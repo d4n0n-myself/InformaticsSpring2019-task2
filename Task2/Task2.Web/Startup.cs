@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Task2.Infrastructure.Repos;
+using Task2.Infrastructure.ReposInterfaces;
 
 namespace Task2.Web
 {
@@ -38,6 +41,10 @@ namespace Task2.Web
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+			services.AddScoped<IPostRepository, PostRepository>();
+			services.AddScoped<IUserRepository, UserRepository>();
+			services.AddScoped<ICommentRepository, CommentRepository>();
+			
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
 		}
