@@ -21,6 +21,7 @@
         <Content Update="appconfig.json">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Include="ClientApp\src\app\app.routes.ts" />
     </ItemGroup>
     
     <ItemGroup>
@@ -28,6 +29,8 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+        <None Include="ClientApp\src\app\services\httpService\http-service.service.spec.ts" />
+        <None Include="ClientApp\src\app\services\httpService\http-service.service.ts" />
     </ItemGroup>
 
     <ItemGroup>
@@ -38,10 +41,6 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="ClientApp\src\app\services" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
