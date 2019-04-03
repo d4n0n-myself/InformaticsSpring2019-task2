@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Task2.Core;
+using Task2.Core.entities;
 
 namespace Task2.Infrastructure
 {
@@ -17,7 +18,15 @@ namespace Task2.Infrastructure
 		
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			base.OnModelCreating(modelBuilder);
+			modelBuilder.Entity<User>()
+				.HasIndex(u => u.Login);
+
+			modelBuilder.Entity<Post>()
+				.HasIndex(p => p.Title);
 		}
+		
+		public DbSet<User> Users { get; set; }
+		public DbSet<Post> Posts { get; set; }
+		public DbSet<Comment> Comments { get; set; }
 	}
 }
