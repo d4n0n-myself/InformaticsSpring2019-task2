@@ -1,6 +1,6 @@
 using System;
 
-namespace Task2.Core.entities
+namespace Task2.Core.Entities
 {
     public class Comment
     {

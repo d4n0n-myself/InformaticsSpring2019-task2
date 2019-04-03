@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Task2.Core;
-using Task2.Core.entities;
+using Task2.Core.Entities;
 
 namespace Task2.Infrastructure
 {

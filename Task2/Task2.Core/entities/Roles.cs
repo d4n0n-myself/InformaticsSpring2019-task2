@@ -1,10 +1,10 @@
-namespace Task2.Core.entities
+namespace Task2.Core.Entities
 {
     public enum Roles
     {
-        Admin,
-        Jun,
-        Middle,
-        Senor
+        Admin = 1,
+        Junior = 2,
+        Middle = 3,
+        Senior = 4
     }
 }

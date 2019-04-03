@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Task2.Core.entities;
+using Task2.Core.Entities;
+using Task2.Infrastructure.ReposInterfaces;
 
-namespace Task2.Infrastructure
+namespace Task2.Infrastructure.Repos
 {
-    public class CommentRepository
+    public class CommentRepository : ICommentRepository
     {
         public CommentRepository(ApplicationContext context)
         {
