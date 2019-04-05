@@ -1,3 +1,119 @@
-<p>
-  posts-list works!
-</p>
+<!doctype html>
+<html>
+
+<!--
+Template Name: Kelaby
+Author: <a href="http://www.os-templates.com/">OS Templates</a>
+Author URI: http://www.os-templates.com/
+Licence: Free to use under our free template licence terms
+Licence URI: http://www.os-templates.com/template-terms
+-->
+<html>
+<head>
+  <title>{{ course.name }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="../posts-list/posts-list.component.css">
+</head>
+<body id="top">
+<div class="wrapper row0">
+</div>
+<div class="wrapper row1">
+
+  <header id="header" class="hoc clear">
+    <div id="logo" class="fl_left"  style="background-color: #FFFFFF">
+      <a href="#"> <h1>Patreon</h1></a>
+    </div>
+    <div id="quickinfo" class="fl_right"  style="background-color: #FFFFFF">
+      <ul class="nospace inline">
+        <div class="fl_right">
+          <ul>
+            <div *ngIf="user_authenticated">
+            <li><strong><a href="#">My Profile</a></strong></li>
+            </div>
+            <div *ngIf="user_not_authenticated">
+            <li><strong><a href="#">Sign up</a></strong></li>
+            <li><strong><a href="#">Log in</a></strong></li>
+            </div>
+          </ul>
+        </div>
+      </ul>
+    </div>
+  </header>
+
+</div>
+<div class="bgded overlay" style="background-image:url('');">
+  <div id="breadcrumb" class="hoc clear">
+    <h6 class="heading">{{ course.author.name }}</h6>
+  </div>
+</div>
+
+<div class="wrapper row3">
+  <div class="wrapper row2" style="background-color: #FFFFFF; border:none" >
+    <nav id="mainav" class="hoc clear">
+      <ul class="clear">
+        <li style="align-self: center"><a href="#">Overview</a></li>
+        <li style="align-self: center"><a href="#">Posts</a></li>
+        <div class="fl_right">
+          <button class="btn red" type="button" onclick="window.location.href = '#'" style="align-self: center"><span>Become a patron</span></button>
+        </div>
+
+      </ul>
+
+    </nav>
+  </div>
+  <hr style="color: #dddddd">
+
+
+  <main class="hoc container clear">
+    <div class="content three_quarter first">
+
+      <div id="posts">
+
+        <ul>
+          <template ngFor #post [ngForOf]="posts">
+            <li>
+              <article>
+              <header>
+                <address>
+                  <a href="#">{{ post.title }}</a>
+                </address>
+                <time>{{ post.date_published }}</time>
+                <br>
+                <comments>{{post.comments}}</comments>
+              </header>
+            </article>
+            </li>
+          </template>
+        </ul>
+
+
+      </div>
+    </div>
+    <div class="sidebar one_quarter">
+      <h6>Tiers</h6>
+      <nav class="sdb_holder">
+        <ul style="list-style: none">
+          <template ngFor #tier [ngForOf]="tiers">
+            <li><a href="#" style="">{{ tier.name }}</a></li>
+          </template>
+        </ul>
+      </nav>
+    </div>
+  </main>
+
+</div>
+
+<div class="wrapper row5" style="border: none">
+  <div class="clear">
+
+  </div>
+  <hr style="color: #dddddd" >
+  <div id="copyright" class="hoc clear" style="border: none">
+    <p class="fl_left">2019 Spring Task 2 Patreon</p>
+  </div>
+</div>
+
+</body>
+</html>
+
