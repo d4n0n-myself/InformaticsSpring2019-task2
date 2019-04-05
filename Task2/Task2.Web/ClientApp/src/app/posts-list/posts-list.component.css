@@ -257,7 +257,7 @@ nav ul, nav ol{margin:0; padding:0; list-style:none;}
 
 /* Colours
 --------------------------------------------------------------------------------------------------------------- */
-body{color:#CBCBCB; background-color:#1A1A1A;}
+body{color:#CBCBCB; background-color:#FFFFFF;}
 a{color:#1C7AA8;}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
