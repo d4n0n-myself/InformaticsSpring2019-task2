@@ -1,40 +1,36 @@
-<!doctype html>
-<html>
-<html>
-<head>
-  <title>{{ course.name }}</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="../posts-list/posts-list.component.css">
-</head>
-<body id="top">
+<!--<!doctype html>-->
+<!--<html>-->
+<!--<html>-->
+<!--<head>-->
+  <!--<title>{{ course.name }}</title>-->
+  <!--<meta charset="utf-8">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
+<!--</head>-->
+<!--<body id="top">-->
 <div class="wrapper row0">
 </div>
 <div class="wrapper row1">
-  <header id="header" class="hoc clear">
-    <div id="logo" class="fl_left"  style="background-color: #FFFFFF">
-      <a href="#"> <h1>Patreon</h1></a>
-    </div>
-    <div id="quickinfo" class="fl_right"  style="background-color: #FFFFFF">
-      <ul class="nospace inline">
-        <div class="fl_right">
-          <ul>
-            <div *ngIf="user_authenticated">
-              <li><strong><a href="#">My Profile</a></strong></li>
-            </div>
-            <div *ngIf="user_not_authenticated">
-              <li><strong><a href="#">Sign up</a></strong></li>
-              <li><strong><a href="#">Log in</a></strong></li>
-            </div>
-          </ul>
-        </div>
-      </ul>
-    </div>
-  </header>
+
+    <!--<div id="quickinfo" class="fl_right"  style="background-color: #FFFFFF">-->
+      <!--<ul class="nospace inline">-->
+        <!--<div class="fl_right">-->
+          <!--<ul>-->
+            <!--<div>-->
+              <!--<li><strong><a href="#">My Profile</a></strong></li>-->
+            <!--</div>-->
+            <!--<div>-->
+              <!--<li><strong><a href="#">Sign up</a></strong></li>-->
+              <!--<li><strong><a href="#">Log in</a></strong></li>-->
+            <!--</div>-->
+          <!--</ul>-->
+        <!--</div>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</header>-->
 </div>
 <div class="bgded overlay" style="background-image:url('');">
   <div id="breadcrumb" class="hoc clear">
-    <h6 class="heading">{{ course.author.name }}</h6>
+    <h6 class="heading"> course.author.name </h6>
   </div>
 </div>
 <div class="wrapper row3">
@@ -54,16 +50,16 @@
     <div class="content three_quarter first">
       <div id="posts">
         <ul>
-          <template ngFor #post [ngForOf]="posts">
+          <template >
             <li>
               <article>
                 <header>
                   <address>
-                    <a href="#">{{ post.title }}</a>
+                    <a href="#"> post.title }}</a>
                   </address>
-                  <time>{{ post.date_published }}</time>
+                  <time> post.date_published }}</time>
                   <br>
-                  <comments>{{post.comments}}</comments>
+                  <!--<comments>{{post.comments}}</comments>-->
                 </header>
               </article>
             </li>
@@ -75,8 +71,8 @@
       <h6>Tiers</h6>
       <nav class="sdb_holder">
         <ul style="list-style: none">
-          <template ngFor #tier [ngForOf]="tiers">
-            <li><a href="#" style="">{{ tier.name }}</a></li>
+          <template>
+            <li><a href="#" style=""> tier.name }}</a></li>
           </template>
         </ul>
       </nav>
@@ -91,6 +87,6 @@
     <p class="fl_left">2019 Spring Task 2 Patreon</p>
   </div>
 </div>
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
 
