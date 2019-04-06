@@ -7,9 +7,9 @@
   <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">-->
 <!--</head>-->
 <!--<body id="top">-->
-<div class="wrapper row0">
-</div>
-<div class="wrapper row1">
+<!--<div class="wrapper row0">-->
+<!--</div>-->
+<!--<div class="wrapper row1">-->
 
     <!--<div id="quickinfo" class="fl_right"  style="background-color: #FFFFFF">-->
       <!--<ul class="nospace inline">-->
@@ -27,7 +27,7 @@
       <!--</ul>-->
     <!--</div>-->
   <!--</header>-->
-</div>
+<!--</div>-->
 <div class="bgded overlay" style="background-image:url('');">
   <div id="breadcrumb" class="hoc clear">
     <h6 class="heading"> course.author.name </h6>
@@ -35,36 +35,40 @@
 </div>
 <div class="wrapper row3">
   <div class="wrapper row2" style="background-color: #FFFFFF; border:none" >
-    <nav id="mainav" class="hoc clear">
-      <ul class="clear">
-        <li style="align-self: center"><a href="#">Overview</a></li>
-        <li style="align-self: center"><a href="#">Posts</a></li>
-        <div class="fl_right">
-          <button class="btn red" type="button" onclick="window.location.href = '#'" style="align-self: center"><span>Become a patron</span></button>
-        </div>
-      </ul>
-    </nav>
+    <!--<nav id="mainav" class="hoc clear">-->
+      <!--<ul class="clear">-->
+        <!--<li style="align-self: center"><a href="#">Overview</a></li>-->
+        <!--<li style="align-self: center"><a href="#">Posts</a></li>-->
+        <!--<div class="fl_right">-->
+          <!--<button class="btn red" type="button" onclick="window.location.href = '#'" style="align-self: center"><span>Become a patron</span></button>-->
+        <!--</div>-->
+      <!--</ul>-->
+    <!--</nav>-->
   </div>
   <hr style="color: #dddddd">
-  <main class="hoc container clear">
-    <div class="content three_quarter first">
+  <!--<main class="hoc container clear">-->
+    <!--<div class="content three_quarter first">-->
       <div id="posts">
-        <ul>
-          <template >
-            <li>
-              <article>
-                <header>
-                  <address>
-                    <a href="#"> post.title }}</a>
-                  </address>
-                  <time> post.date_published }}</time>
-                  <br>
-                  <!--<comments>{{post.comments}}</comments>-->
-                </header>
-              </article>
-            </li>
-          </template>
-        </ul>
+        <div *ngFor="let post of posts">
+          {{ post.title }}
+          <a>{{ post.videoUrl }}</a>
+        </div>
+        <!--<ul>-->
+          <!--<template >-->
+            <!--<li>-->
+              <!--<article>-->
+                <!--<header>-->
+                  <!--<address>-->
+                    <!--<a href="#"> post.title }}</a>-->
+                  <!--</address>-->
+                  <!--<time> post.date_published }}</time>-->
+                  <!--<br>-->
+                  <!--&lt;!&ndash;<comments>{{post.comments}}</comments>&ndash;&gt;-->
+                <!--</header>-->
+              <!--</article>-->
+            <!--</li>-->
+          <!--</template>-->
+        <!--</ul>-->
       </div>
     </div>
     <div class="sidebar one_quarter">
@@ -77,12 +81,12 @@
         </ul>
       </nav>
     </div>
-  </main>
-</div>
+  <!--</main>-->
+<!--</div>-->
 <div class="wrapper row5" style="border: none">
   <div class="clear">
   </div>
-  <hr style="color: #dddddd" >
+  <!--<hr style="color: #dddddd" >-->
   <div id="copyright" class="hoc clear" style="border: none">
     <p class="fl_left">2019 Spring Task 2 Patreon</p>
   </div>

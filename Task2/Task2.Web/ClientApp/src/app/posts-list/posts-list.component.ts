@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService, Post} from "../services/httpService/http.service";
 
 @Component({
   selector: 'app-posts-list',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostsListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpService: HttpService) { }
+
+  posts = new Array<Post>();
 
   ngOnInit() {
+    this.httpService.getPosts().subscribe(result => {
+      this.posts = result;
+    });
   }
-
 }

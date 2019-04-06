@@ -67,7 +67,7 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllPosts()
+        public IActionResult Get()
         {
             try
             {
