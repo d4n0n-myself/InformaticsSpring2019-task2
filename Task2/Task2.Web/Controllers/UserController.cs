@@ -9,32 +9,11 @@ namespace Task2.Web.Controllers
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
+        private readonly IUserRepository _repository;
+
         public UserController(IUserRepository repository)
         {
             _repository = repository;
-        }
-
-        public IActionResult Test()
-        {
-            return Ok("12345");
-        }
-
-        [HttpPost]
-        public IActionResult ChangeRole()
-        {
-            try
-            {
-                var form = HttpContext.Request.Form;
-                var userId = Guid.Parse(form["user_id"]);
-                var role = (Roles) Enum.Parse(typeof(Roles), form["role"], false);
-                _repository.ChangeRole(userId, role);
-                return Ok(true);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString()); //
-            }
         }
 
         [HttpPost]
@@ -56,32 +35,36 @@ namespace Task2.Web.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult ContainsUser()
+        [HttpPost]
+        public IActionResult ChangeRole()
         {
-            var form = HttpContext.Request.Form;
-            var login = form["login"];
+            try
+            {
+                var form = HttpContext.Request.Form;
+                var userId = Guid.Parse(form["user_id"]);
+                var role = (Roles) Enum.Parse(typeof(Roles), form["role"], false);
+                _repository.ChangeRole(userId, role);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest(e.ToString());
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ContainsUser([FromQuery] string login)
+        {
             var response = _repository.ContainUser(login);
             return Ok(response);
         }
 
         [HttpGet]
-        public IActionResult Check()
-        {
-            var form = HttpContext.Request.Form;
-            var login = form["login"];
-            var password = form["password"];
-            var response = _repository.CheckPassword(login, password);
-            return Ok(response);
-        }
-
-        [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery] string login)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var login = form["login"];
                 var user = _repository.Get(login);
                 return Ok(user);
             }
@@ -109,7 +92,5 @@ namespace Task2.Web.Controllers
                 return BadRequest(e.ToString());
             }
         }
-
-        private readonly IUserRepository _repository;
     }
 }

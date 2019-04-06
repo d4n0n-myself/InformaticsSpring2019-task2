@@ -7,6 +7,8 @@ namespace Task2.Web.Controllers
     [Route("[controller]/[action]")]
     public class PostController : Controller
     {
+        private readonly IPostRepository _repository;
+
         public PostController(IPostRepository repository)
         {
             _repository = repository;
@@ -32,14 +34,12 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetPost()
+        public IActionResult Contain([FromQuery] string title)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var title = form["title"];
-                var post = _repository.Get(title);
-                return Ok(post);
+                var response = _repository.ContainPost(title);
+                return Ok(response);
             }
             catch (Exception e)
             {
@@ -47,9 +47,6 @@ namespace Task2.Web.Controllers
                 return BadRequest(e.ToString());
             }
         }
-
-        [HttpGet]
-        public IActionResult GetAllPosts() => Ok(_repository.Get());
 
         [HttpPost]
         public IActionResult Delete()
@@ -70,14 +67,26 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Contain()
+        public IActionResult GetAllPosts()
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var title = form["title"];
-                var response = _repository.ContainPost(title);
-                return Ok(response);
+                return Ok(_repository.Get());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetPost([FromQuery] string title)
+        {
+            try
+            {
+                var post = _repository.Get(title);
+                return Ok(post);
             }
             catch (Exception e)
             {
@@ -85,7 +94,5 @@ namespace Task2.Web.Controllers
                 return BadRequest(e.ToString());
             }
         }
-
-        private readonly IPostRepository _repository;
     }
 }
