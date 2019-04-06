@@ -12,11 +12,12 @@ namespace Task2.Infrastructure.Repos
         {
             _context = context;
         }
-        
+
         public CommentRepository()
         {
             _context = new ApplicationContext();
         }
+
         public bool Add(Guid userId, Guid postId, string text)
         {
             try
@@ -47,7 +48,14 @@ namespace Task2.Infrastructure.Repos
                 return false;
             }
         }
-        
+
+        public Comment Get(string text, Guid userId, Guid postId) =>
+            _context.Comments
+                .First(c => c.Text.Equals(text) 
+                            && c.PostId.Equals(postId) 
+                            && c.UserId.Equals(userId));
+
+
         public IEnumerable<Comment> Get(Guid postId)
         {
             var comments = _context.Comments.Where(c => c.PostId.Equals(postId));
@@ -55,7 +63,7 @@ namespace Task2.Infrastructure.Repos
                 comment.UserLogin = _context.Users.First(u => u.Id == comment.UserId)?.Login;
             return comments;
         }
-        
+
         private readonly ApplicationContext _context;
     }
 }
