@@ -15,23 +15,19 @@ namespace Task2.Web.Controllers
         {
             _repository = repository;
         }
-
+        
         [HttpPost]
-        public IActionResult Add()
+        public IActionResult Add(User user)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var login = form["login"];
-                var role = (Roles) Enum.Parse(typeof(Roles), form["role"], false);
-                var password = form["password"];
-                var response = _repository.Add(login, password, role);
+                var response = _repository.Add(user.Login, user.Password, user.Role);
                 return Ok(response);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString()); //
+                return BadRequest(e.ToString()); 
             }
         }
 
@@ -40,12 +36,8 @@ namespace Task2.Web.Controllers
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var userId = Guid.Parse(form["user_id"]);
-                var role = (Roles) Enum.Parse(typeof(Roles), form["role"], false);
-                _repository.ChangeRole(userId, role);
-                return Ok();
-            }
+                _repository.ChangeRole(userId, newRole);
+                return Ok(true);
             catch (Exception e)
             {
                 Console.WriteLine(e);
@@ -57,6 +49,13 @@ namespace Task2.Web.Controllers
         public IActionResult ContainsUser([FromQuery] string login)
         {
             var response = _repository.ContainUser(login);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public IActionResult Check(User user)
+        {
+            var response = _repository.CheckPassword(user.Login, user.Password);
             return Ok(response);
         }
 
@@ -76,12 +75,10 @@ namespace Task2.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete()
+        public IActionResult Delete(string login)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var login = form["login"];
                 var user = _repository.Get(login);
                 var response = _repository.Delete(user);
                 return Ok(response);
