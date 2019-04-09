@@ -14,39 +14,27 @@ namespace Task2.Web.Controllers
             _repository = repository;
         }
 
-        public IActionResult Test()
-        {
-            return Ok("12345");
-        }
-
         [HttpPost]
-        public IActionResult ChangeRole()
+        public IActionResult ChangeRole(Guid userId, Roles newRole)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var userId = Guid.Parse(form["user_id"]);
-                var role = (Roles) Enum.Parse(typeof(Roles), form["role"], false);
-                _repository.ChangeRole(userId, role);
+                _repository.ChangeRole(userId, newRole);
                 return Ok(true);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString()); //
+                return BadRequest(e.ToString()); 
             }
         }
 
         [HttpPost]
-        public IActionResult Add()
+        public IActionResult Add(User user)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var login = form["login"];
-                var role = (Roles) Enum.Parse(typeof(Roles), form["role"], false);
-                var password = form["password"];
-                var response = _repository.Add(login, password, role);
+                var response = _repository.Add(user.Login, user.Password, user.Role);
                 return Ok(response);
             }
             catch (Exception e)
@@ -57,31 +45,24 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult ContainsUser()
+        public IActionResult ContainsUser(string login)
         {
-            var form = HttpContext.Request.Form;
-            var login = form["login"];
             var response = _repository.ContainUser(login);
             return Ok(response);
         }
 
         [HttpGet]
-        public IActionResult Check()
+        public IActionResult Check(User user)
         {
-            var form = HttpContext.Request.Form;
-            var login = form["login"];
-            var password = form["password"];
-            var response = _repository.CheckPassword(login, password);
+            var response = _repository.CheckPassword(user.Login, user.Password);
             return Ok(response);
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(string login)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var login = form["login"];
                 var user = _repository.Get(login);
                 return Ok(user);
             }
@@ -93,12 +74,10 @@ namespace Task2.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete()
+        public IActionResult Delete(string login)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var login = form["login"];
                 var user = _repository.Get(login);
                 var response = _repository.Delete(user);
                 return Ok(response);

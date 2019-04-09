@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using Task2.Core.Entities;
 using Task2.Infrastructure.ReposInterfaces;
 
 namespace Task2.Web.Controllers
@@ -13,15 +14,11 @@ namespace Task2.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add()
+        public IActionResult Add(Comment comment)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var text = form["text"];
-                var userId = Guid.Parse(form["user_id"]);
-                var postId = Guid.Parse(form["post_id"]);
-                var response = _repository.Add(userId, postId, text);
+                var response = _repository.Add(comment.UserId, comment.PostId, comment.Text);
                 return Ok(response);
             }
             catch (Exception e)
@@ -32,16 +29,12 @@ namespace Task2.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete()
+        public IActionResult Delete(Comment comment)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var text = form["text"];
-                var userId = Guid.Parse(form["user_id"]);
-                var postId = Guid.Parse(form["post_id"]);
-                var comment = _repository.Get(text, userId, postId);
-                var response = _repository.Delete(comment);
+                var _comment = _repository.Get(comment.Text, comment.UserId, comment.PostId);
+                var response = _repository.Delete(_comment);
                 return Ok(response);
             }
             catch (Exception e)
@@ -52,12 +45,10 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(Guid postId)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var postId = Guid.Parse(form["post_id"]);
                 var comments = _repository.Get(postId);
                 return Ok(comments);
             }

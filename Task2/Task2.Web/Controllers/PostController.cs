@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using Task2.Core.Entities;
 using Task2.Infrastructure.ReposInterfaces;
 
 namespace Task2.Web.Controllers
@@ -13,15 +14,11 @@ namespace Task2.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add()
+        public IActionResult Add(Post post)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var title = form["title"];
-                var videoUrl = form["video_url"];
-                var fileLink = form["file_link"];
-                var response = _repository.Add(title, videoUrl, fileLink);
+                var response = _repository.Add(post.Title, post.VideoUrl, post.FileLink);
                 return Ok(response);
             }
             catch (Exception e)
@@ -32,12 +29,10 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetPost()
+        public IActionResult GetPost(string title)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var title = form["title"];
                 var post = _repository.Get(title);
                 return Ok(post);
             }
@@ -52,12 +47,10 @@ namespace Task2.Web.Controllers
         public IActionResult GetAllPosts() => Ok(_repository.Get());
 
         [HttpPost]
-        public IActionResult Delete()
+        public IActionResult Delete(string title)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var title = form["title"];
                 var post = _repository.Get(title);
                 var response = _repository.Delete(post);
                 return Ok(response);
@@ -70,12 +63,10 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Contain()
+        public IActionResult Contain(string title)
         {
             try
             {
-                var form = HttpContext.Request.Form;
-                var title = form["title"];
                 var response = _repository.ContainPost(title);
                 return Ok(response);
             }
