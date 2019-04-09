@@ -15,6 +15,10 @@ export class HttpService {
 
   httpOptions = {headers: {'Authorization': localStorage.getItem('token')}};
 
+  getPosts() : Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.baseUrl}Post/Get`, this.httpOptions);
+  }
+
   logIn(username: string, password: string) {
     let url = `${this.baseUrl}Token/GetToken?username=${username}&password=${password}`;
     return this.http.get<LoginModel>(url).subscribe(result => {
@@ -30,4 +34,11 @@ export class HttpService {
 
 interface LoginModel {
   token: string;
+}
+
+export interface Post {
+  id: string,
+  title: string,
+  videoUrl: string,
+  fileLink: string
 }

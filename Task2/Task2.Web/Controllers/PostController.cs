@@ -8,6 +8,8 @@ namespace Task2.Web.Controllers
     [Route("[controller]/[action]")]
     public class PostController : Controller
     {
+        private readonly IPostRepository _repository;
+
         public PostController(IPostRepository repository)
         {
             _repository = repository;
@@ -29,7 +31,7 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetPost(string title)
+        public IActionResult GetPost([FromQuery] string title)
         {
             try
             {
@@ -42,9 +44,6 @@ namespace Task2.Web.Controllers
                 return BadRequest(e.ToString());
             }
         }
-
-        [HttpGet]
-        public IActionResult GetAllPosts() => Ok(_repository.Get());
 
         [HttpPost]
         public IActionResult Delete(string title)
@@ -63,7 +62,7 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Contain(string title)
+        public IActionResult Contain([FromQuery]string title)
         {
             try
             {
@@ -73,10 +72,8 @@ namespace Task2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString());
+                return BadRequest(e.Message);
             }
         }
-
-        private readonly IPostRepository _repository;
     }
 }

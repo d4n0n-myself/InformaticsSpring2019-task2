@@ -26,7 +26,7 @@ namespace Task2.Web.Controllers
 				now.AddMinutes(AuthOptions.Lifetime),
 				new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
 			var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-			return Ok(new { Token = $"Bearer {token}"});
+			return Ok(new {Token = $"Bearer {token}"});
 		}
 
 		private ClaimsIdentity GetIdentity()

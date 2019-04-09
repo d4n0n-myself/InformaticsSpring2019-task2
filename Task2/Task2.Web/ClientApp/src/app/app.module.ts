@@ -13,6 +13,8 @@ import {routes} from "./app.routes";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuardService} from "./services/authGuard/auth-guard.service";
 import {AuthenticationService} from "./services/authentication/authentication.service";
+import {SinglePostComponent} from "./single-post/single-post.component";
+import {PostsListComponent} from "./posts-list/posts-list.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {AuthenticationService} from "./services/authentication/authentication.se
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    LoginComponent
+    LoginComponent,
+    SinglePostComponent,
+    PostsListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

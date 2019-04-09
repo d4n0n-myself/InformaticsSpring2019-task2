@@ -9,26 +9,13 @@ namespace Task2.Web.Controllers
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
+        private readonly IUserRepository _repository;
+
         public UserController(IUserRepository repository)
         {
             _repository = repository;
         }
-
-        [HttpPost]
-        public IActionResult ChangeRole(Guid userId, Roles newRole)
-        {
-            try
-            {
-                _repository.ChangeRole(userId, newRole);
-                return Ok(true);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString()); 
-            }
-        }
-
+        
         [HttpPost]
         public IActionResult Add(User user)
         {
@@ -40,12 +27,26 @@ namespace Task2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString()); //
+                return BadRequest(e.ToString()); 
+            }
+        }
+
+        [HttpPost]
+        public IActionResult ChangeRole()
+        {
+            try
+            {
+                _repository.ChangeRole(userId, newRole);
+                return Ok(true);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest(e.ToString());
             }
         }
 
         [HttpGet]
-        public IActionResult ContainsUser(string login)
+        public IActionResult ContainsUser([FromQuery] string login)
         {
             var response = _repository.ContainUser(login);
             return Ok(response);
@@ -59,7 +60,7 @@ namespace Task2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get(string login)
+        public IActionResult Get([FromQuery] string login)
         {
             try
             {
@@ -88,7 +89,5 @@ namespace Task2.Web.Controllers
                 return BadRequest(e.ToString());
             }
         }
-
-        private readonly IUserRepository _repository;
     }
 }
