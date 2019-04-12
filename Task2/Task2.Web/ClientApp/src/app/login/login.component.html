@@ -1,11 +1,40 @@
-<form #personForm="ngForm" (ngSubmit)="Update()">
-  <div class="form-group">
-    <label for="user">Username</label><br>
-    <input class="form-control" name="usr" id="user" [(ngModel)]="username"><br>
-  </div>
-  <div class="form-group">
-    <label for="pass">Password</label><br>
-    <input class="form-control" name="pass" id="pass" type="password" [(ngModel)]="password"><br>
-  </div>
-  <button  class= "btn btn-success" type="submit">Log in</button>
-</form>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Log in</title>
+  <link href="login.component.css" rel="stylesheet" type="text/css">
+  <link href="css/fontawesome-all.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Muli:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+<div class="login-form">
+  <h2>Log in </h2>
+  <form #personForm="ngForm" (ngSubmit)="Update()">
+    <div class="form-group">
+      <label for="user">Username:</label>
+      <div class="group">
+        <i class="fas fa-user"></i>
+        <input class="form-control" placeholder="Username" name="usr" id="user" type="text" [(ngModel)]="username" required="required">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="pass">Password:</label>
+      <div class="group">
+        <i class="fas fa-unlock"></i>
+        <input class="form-control" placeholder="Password" name="pass" id="pass" type="password" [(ngModel)]="password" required="required">
+      </div>
+    </div>
+    <button  class= "btn btn-success" type="submit">Log in</button>
+  </form>
+  <p class="register-p">Don't have an account?<a href="#" class="register"> Register</a></p>
+</div>
+<footer>
+  <p class="copyright-agileinfo">2019, April</p>
+</footer>
+</body>
+</html>
+
+
+
