@@ -1,0 +1,10 @@
+<form>
+  <div>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input [(ngModel)]="title" type="text" class="form-control" id="title"
+             name="title">
+    </div>
+  </div>
+  <button type="submit" (click)="Add()" class="btn btn-success">Submit</button>
+</form>

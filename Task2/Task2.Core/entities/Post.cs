@@ -4,6 +4,9 @@ namespace Task2.Core.Entities
 {
     public class Post
     {
+        public Post()
+        {
+        }
         public Post(string title, string videoUrl, string fileLink)
         {
             Id = Guid.NewGuid();

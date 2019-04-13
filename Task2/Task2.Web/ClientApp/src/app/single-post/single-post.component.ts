@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {HttpService, Post} from "../services/httpService/http.service";
 
 @Component({
   selector: 'app-single-post',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SinglePostComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpService: HttpService) { }
+
+  post = new Post();
 
   ngOnInit() {
+    this.httpService.getPost(localStorage.getItem('post')).subscribe(result => {
+      this.post = result;
+    });
   }
-
 }

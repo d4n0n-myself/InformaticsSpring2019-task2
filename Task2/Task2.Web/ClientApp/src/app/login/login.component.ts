@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
 
   Update() {
     this.httpService.logIn(this.username, this.password);
-    this.router.navigate(['/']);
+    location.replace('/');
+  }
+
+  RedirectToRegister() {
+    this.router.navigate(["/register"])
   }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Task2.Web.Controllers
@@ -10,6 +11,15 @@ namespace Task2.Web.Controllers
 	[Route("[controller]/[action]")]
 	public class TokenController : Controller
 	{
+		[HttpPost]
+		public IActionResult Register([FromQuery] string username, string password)
+		{
+			//Users.AddNew
+
+			return GetToken(username, password);
+		}
+		
+		[HttpGet]
 		public IActionResult GetToken([FromQuery] string username, string password)
 		{
 			var identity = GetIdentity();

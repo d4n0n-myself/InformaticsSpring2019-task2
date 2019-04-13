@@ -15,11 +15,28 @@ export class HttpService {
 
   httpOptions = {headers: {'Authorization': localStorage.getItem('token')}};
 
+  addPost(title: string, video: string, file: string) {
+    var url = `${this.baseUrl}Post/Add?fileLink=${file}&video=${video}&title=${title}`;
+    this.http.post(url, null).subscribe();
+  }
+
+  getPost(title:string) : Observable<Post> {
+    var url = `${this.baseUrl}Post/GetPost?title=${title}`;
+    return this.http.get<Post>(url);
+  }
+
   getPosts() : Observable<Post[]> {
     return this.http.get<Post[]>(`${this.baseUrl}Post/Get`, this.httpOptions);
   }
 
   logIn(username: string, password: string) {
+    let url = `${this.baseUrl}Token/GetToken?username=${username}&password=${password}`;
+    return this.http.get<LoginModel>(url).subscribe(result => {
+      localStorage.setItem('token', result.token);
+    })
+  }
+
+  register(username: string, password: string) {
     let url = `${this.baseUrl}Token/GetToken?username=${username}&password=${password}`;
     return this.http.get<LoginModel>(url).subscribe(result => {
       localStorage.setItem('token', result.token);
@@ -36,9 +53,13 @@ interface LoginModel {
   token: string;
 }
 
-export interface Post {
-  id: string,
-  title: string,
-  videoUrl: string,
+export class Post {
+  constructor() {
+
+  }
+
+  id: string;
+  title: string;
+  videoUrl: string;
   fileLink: string
 }

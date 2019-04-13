@@ -15,6 +15,10 @@ import {AuthGuardService} from "./services/authGuard/auth-guard.service";
 import {AuthenticationService} from "./services/authentication/authentication.service";
 import {SinglePostComponent} from "./single-post/single-post.component";
 import {PostsListComponent} from "./posts-list/posts-list.component";
+import {AddPostComponent} from "./add-post/add-post.component";
+import {HomeLayoutComponent} from "./home-layout/home-layout.component";
+import {LoginLayoutComponent} from "./login-layout/login-layout.component";
+import {RegisterComponent} from "./register/register.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import {PostsListComponent} from "./posts-list/posts-list.component";
     FetchDataComponent,
     LoginComponent,
     SinglePostComponent,
-    PostsListComponent
+    PostsListComponent,
+    AddPostComponent,
+    HomeLayoutComponent,
+    LoginLayoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

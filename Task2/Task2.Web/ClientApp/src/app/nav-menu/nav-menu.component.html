@@ -1,4 +1,4 @@
-<header class="hoc clear">
+<header>
   <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>
     <div class="container">
       <a class="navbar-brand" [routerLink]='["/"]'>
@@ -20,10 +20,13 @@
             <a class="nav-link text-dark" [routerLink]='["/fetch-data"]'>Fetch data</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
-            <a class="nav-link text-dark" [routerLink]='["/single"]'>Single post</a>
+            <a class="nav-link text-dark" [routerLink]='["/add-post"]'>Add post</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" [routerLink]='["/posts"]'>Posts</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]='["link-active"]'>
+            <button class="nav-link text-dark" (click)="signOut()">Sign Out</button>
           </li>
         </ul>
       </div>

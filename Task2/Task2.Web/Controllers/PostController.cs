@@ -1,5 +1,9 @@
 using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Task2.Core.Entities;
 using Task2.Infrastructure.ReposInterfaces;
 
@@ -16,11 +20,11 @@ namespace Task2.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Post post)
+        public IActionResult Add([FromQuery] string title, string video, string fileLink)
         {
             try
             {
-                var response = _repository.Add(post.Title, post.VideoUrl, post.FileLink);
+                var response = _repository.Add(title, video, fileLink);
                 return Ok(response);
             }
             catch (Exception e)
@@ -45,6 +49,20 @@ namespace Task2.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public Post[] Get()
+        {
+            try
+            {
+                return _repository.Get().ToArray();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+        }
+
         [HttpPost]
         public IActionResult Delete(string title)
         {
@@ -57,7 +75,7 @@ namespace Task2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString());
+                return BadRequest(e);
             }
         }
 

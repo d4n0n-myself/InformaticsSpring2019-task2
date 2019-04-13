@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpService, Post} from "../services/httpService/http.service";
+import {Local} from "protractor/built/driverProviders";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-posts-list',
@@ -8,7 +10,7 @@ import {HttpService, Post} from "../services/httpService/http.service";
 })
 export class PostsListComponent implements OnInit {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, public router: Router) { }
 
   posts = new Array<Post>();
 
@@ -16,5 +18,10 @@ export class PostsListComponent implements OnInit {
     this.httpService.getPosts().subscribe(result => {
       this.posts = result;
     });
+  }
+
+  goToPost(title : string) {
+    localStorage.setItem('post', title);
+    this.router.navigate(['/single']);
   }
 }

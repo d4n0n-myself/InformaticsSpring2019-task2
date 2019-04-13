@@ -15,7 +15,7 @@ namespace Task2.Web.Controllers
         {
             _repository = repository;
         }
-        
+
         [HttpPost]
         public IActionResult Add(User user)
         {
@@ -27,17 +27,18 @@ namespace Task2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString()); 
+                return BadRequest(e.ToString());
             }
         }
 
         [HttpPost]
-        public IActionResult ChangeRole()
+        public IActionResult ChangeRole(Guid userId, Roles newRole)
         {
             try
             {
                 _repository.ChangeRole(userId, newRole);
                 return Ok(true);
+            }
             catch (Exception e)
             {
                 Console.WriteLine(e);

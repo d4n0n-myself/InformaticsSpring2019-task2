@@ -1,15 +1,4 @@
-body {
-  margin: 0;
-  padding: 0;
-  background: url(animal-dawn-desktop-backgrounds-875858.jpg) 100% 100% no-repeat;
-  min-height: 100vh;
-  background-size: cover;
-  font-family: 'Muli', sans-serif;
-  overflow: hidden;
-}
-
 .login-form {
-  background: rgba(0, 0, 0, 0.4117647058823529);
   max-width: 500px;
   margin: 2em auto 0;
   padding: 5em;

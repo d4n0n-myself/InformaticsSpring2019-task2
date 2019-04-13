@@ -1,3 +1,6 @@
+using System.IO;
+using Castle.Core.Interceptor;
+using Castle.DynamicProxy;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -6,9 +9,14 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Task2.Core.Entities;
+using Task2.Infrastructure;
 using Task2.Infrastructure.Repos;
 using Task2.Infrastructure.ReposInterfaces;
+using Task2.Web.Controllers.Interceptor;
 
 namespace Task2.Web
 {
@@ -44,7 +52,22 @@ namespace Task2.Web
 			services.AddScoped<IPostRepository, PostRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<ICommentRepository, CommentRepository>();
-			
+
+			services.AddSwaggerGen(options =>
+			{
+				options.SwaggerDoc("1.0.0", new OpenApiInfo()
+				{
+					Title = "d4n0n's API",
+					Version = "1.0.0",
+					Contact = new OpenApiContact()
+					{
+						Email = "danon.sibaev@yandex.ru",
+						Name = "d4n0n_myself"
+					},
+					Description = "Informatics Spring 2019 project. Uses ASP.NET Core MVC pattern."
+				});
+			});
+
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });
 		}
@@ -67,6 +90,13 @@ namespace Task2.Web
 			app.UseSpaStaticFiles();
 
 			app.UseAuthentication();
+
+			app.UseSwagger();
+
+			app.UseSwaggerUI(options =>
+			{
+				options.SwaggerEndpoint("/swagger/1.0.0/swagger.json", "d4n0n's API 1.0.0");
+			});
 
 			app.UseMvc(routes =>
 			{

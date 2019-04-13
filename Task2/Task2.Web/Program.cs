@@ -12,9 +12,6 @@ namespace Task2.Web
     {
         public static void Main(string[] args)
         {
-            using (var context = new ApplicationContext())
-            {
-            }
             CreateWebHostBuilder(args).Build().Run();
         }
 

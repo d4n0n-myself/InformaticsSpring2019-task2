@@ -26,7 +26,7 @@ namespace Task2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString());
+                return BadRequest(e);
             }
         }
 
@@ -42,7 +42,7 @@ namespace Task2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString());
+                return BadRequest(e);
             }
         }
 
@@ -59,7 +59,7 @@ namespace Task2.Web.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e);
-                return BadRequest(e.ToString());
+                return BadRequest(e);
             }
         }
     }
