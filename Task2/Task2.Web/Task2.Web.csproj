@@ -24,6 +24,7 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Include="ClientApp\src\app\app.routes.ts" />
+        <Content Include="ClientApp\src\app\nav-menu\nav-menu.componen.js" />
     </ItemGroup>
     
     <ItemGroup>
