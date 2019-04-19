@@ -1,4 +1,13 @@
+.login {
+  background: url(../login-layout/animal-dawn-desktop-backgrounds-875858.jpg) 100% 100% no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  min-height: 10vh;
+  font-family: 'Muli', sans-serif;
+  overflow: hidden;
 
+}
 
 .login-form {
   background: rgba(0, 0, 0, 0.4117647058823529);

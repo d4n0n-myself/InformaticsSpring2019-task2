@@ -1,28 +1,30 @@
-<div class="login-form">
-  <h2>Log in </h2>
-  <form #personForm="ngForm" (ngSubmit)="Update()">
-    <div class="form-group">
-      <label for="user">Username:</label>
-      <div class="group">
-        <i class="fas fa-user"></i>
-        <input class="form-control" placeholder="Username" name="usr" id="user" type="text" [(ngModel)]="username"
-               required="required" style="border:none">
+<div class="login">
+  <div class="login-form">
+    <h2>Log in </h2>
+    <form #personForm="ngForm" (ngSubmit)="Update()">
+      <div class="form-group">
+        <label for="user">Username:</label>
+        <div class="group">
+          <i class="fas fa-user"></i>
+          <input class="form-control" placeholder="Username" name="usr" id="user" type="text" [(ngModel)]="username"
+                 required="required" style="border:none">
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="pass">Password:</label>
-      <div class="group">
-        <i class="fas fa-unlock"></i>
-        <input class="form-control" placeholder="Password" name="pass" id="pass" type="password"
-               [(ngModel)]="password" required="required" style="border:none">
+      <div class="form-group">
+        <label for="pass">Password:</label>
+        <div class="group">
+          <i class="fas fa-unlock"></i>
+          <input class="form-control" placeholder="Password" name="pass" id="pass" type="password"
+                 [(ngModel)]="password" required="required" style="border:none">
+        </div>
       </div>
-    </div>
-    <button class="btn btn-success" type="submit">Log in</button>
-  </form>
-  <p class="register-p">Don't have an account?<button (click)="RedirectToRegister()" class="btn btn-success"> Register</button></p>
+      <button class="btn btn-success" type="submit">Log in</button>
+    </form>
+    <p class="register-p">Don't have an account?<button (click)="RedirectToRegister()" class="btn btn-success"> Register</button></p>
+  </div>
+  <footer>
+    <p class="copyright-agileinfo">2019, April</p>
+  </footer>
 </div>
-<footer>
-  <p class="copyright-agileinfo">2019, April</p>
-</footer>
 
 
