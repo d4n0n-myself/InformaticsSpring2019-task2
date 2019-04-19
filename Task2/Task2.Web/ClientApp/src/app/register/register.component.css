@@ -1,0 +1,39 @@
+
+
+.login-form {
+  background: rgba(0, 0, 0, 0.4117647058823529);
+  max-width: 500px;
+  margin: 2em auto 0;
+  padding: 5em;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: block;
+}
+
+form {
+  display: block;
+  margin-top: 0em;
+}
+
+.form-group {
+  margin: 20px 0;
+}
+
+
+
+a {
+  color: #eee;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.form-control:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-success :focus{
+  color: #fff;
+  background-color: #1ccc44;
+  border-color: #1ccc44;
+}

@@ -1,4 +1,7 @@
+
+
 .login-form {
+  background: rgba(0, 0, 0, 0.4117647058823529);
   max-width: 500px;
   margin: 2em auto 0;
   padding: 5em;
@@ -54,7 +57,7 @@ label {
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
-  line-height: 1;
+  line-height: 2;
 }
 
 input[type="text"], input[type="password"] {
@@ -88,6 +91,7 @@ button {
   background: #bdfc54;;
   color: #ffffff;
   font-size: 13px;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 1px;
   border: none;
@@ -120,7 +124,7 @@ p.register-p {
 }
 
 footer {
-  padding: 4em 0;
+  padding: 1.8em 0;
   text-align: center;
 }
 
@@ -143,4 +147,13 @@ a {
   text-decoration: none;
 }
 
+.form-control:focus {
+  outline: 0;
+  box-shadow: none;
+}
 
+.btn-success :focus{
+  color: #fff;
+  background-color: #1ccc44;
+  border-color: #1ccc44;
+}
