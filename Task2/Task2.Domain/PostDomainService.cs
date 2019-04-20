@@ -5,51 +5,64 @@ using Task2.Infrastructure.ReposInterfaces;
 
 namespace Task2.Domain
 {
-	public class PostDomainService
-	{
-		private readonly IPostRepository _repos;
+    public class PostDomainService
+    {
+        private readonly IPostRepository _repos;
 
-		public PostDomainService(IPostRepository repos)
-		{
-			_repos = repos;
-		}
+        public PostDomainService(IPostRepository repos)
+        {
+            _repos = repos;
+        }
 
-		public Post GetOnlyTitle()
-		{
-			var enumerable = _repos.Get("123");
-			enumerable.FileLink = null;
-			enumerable.VideoUrl = null;
-			return enumerable;
-		}
+        public Post Get(Guid postId)
+        {
+            return _repos.Get(postId);
+        }
 
-		public bool Add(string title, string videoUrl, string fileLink)
-		{
-			throw new NotImplementedException();
-		}
+        public Post Get(Guid postId, Roles role)
+        {
+            if (role == Roles.Junior)
+            {
+                var enumerable = _repos.Get(postId);
+                enumerable.FileLink = null;
+                return enumerable;
+            }
+            else
+            {
+                var enumerable = _repos.Get(postId);
+                return enumerable;
+            }
+        }
 
-		public bool Delete(Post post)
-		{
-			throw new NotImplementedException();
-		}
+        public bool Update(Post post)
+        {
+            return _repos.Update(post);
+        }
 
-		public bool ContainPost(string header)
-		{
-			throw new NotImplementedException();
-		}
+        public bool Add(string title, string videoUrl, string fileLink)
+        {
+            return _repos.Add(title, videoUrl, fileLink);
+        }
 
-		public Post Get(string title)
-		{
-			throw new NotImplementedException();
-		}
+        public bool Delete(Post post)
+        {
+            return _repos.Delete(post);
+        }
 
-		public Post Get(Guid postId)
-		{
-			throw new NotImplementedException();
-		}
+        public bool ContainPost(string header)
+        {
+            return _repos.ContainPost(header);
+        }
 
-		public IEnumerable<Post> Get()
-		{
-			throw new NotImplementedException();
-		}
-	}
+        public Post Get(string title)
+        {
+            return _repos.Get(title);
+        }
+
+
+        public IEnumerable<Post> Get()
+        {
+            return _repos.Get();
+        }
+    }
 }

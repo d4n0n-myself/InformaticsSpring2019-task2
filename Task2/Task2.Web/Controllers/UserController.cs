@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Identity.UI.V3.Pages.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
+using Task2.Domain;
 using Task2.Infrastructure.ReposInterfaces;
 
 namespace Task2.Web.Controllers
@@ -9,9 +10,9 @@ namespace Task2.Web.Controllers
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
-        private readonly IUserRepository _repository;
+        private readonly UserDomainService _repository;
 
-        public UserController(IUserRepository repository)
+        public UserController(UserDomainService repository)
         {
             _repository = repository;
         }
@@ -37,6 +38,7 @@ namespace Task2.Web.Controllers
             try
             {
                 _repository.ChangeRole(userId, newRole);
+                
                 return Ok(true);
             }
             catch (Exception e)

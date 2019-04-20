@@ -55,10 +55,19 @@ namespace Task2.Infrastructure.Repos
         public User Get(string login) => _context.Users.FirstOrDefault(u => u.Login.Equals(login));
         public User Get(Guid id) => _context.Users.FirstOrDefault(u => u.Id.Equals(id));
 
-        public void ChangeRole(Guid id, Roles newRole)
+        public bool ChangeRole(Guid id, Roles newRole)
         {
-            _context.Users.First(u => u.Id.Equals(id)).Role = newRole;
-            _context.SaveChanges();
+            try
+            {
+                _context.Users.First(u => u.Id.Equals(id)).Role = newRole;
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public bool CheckPassword(string login, string password)
