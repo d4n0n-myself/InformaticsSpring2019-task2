@@ -1,13 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
-using Microsoft.IdentityModel.Tokens;
+using Task2.Web.Filters;
+using Task2.Web.Services;
 
 namespace Task2.Web.Controllers
 {
+	[InternalErrorFilter]
 	[Route("[controller]/[action]")]
 	public class TokenController : Controller
 	{

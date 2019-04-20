@@ -4,6 +4,11 @@ namespace Task2.Core.Entities
 {
     public class User
     {
+        public User()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public User(string login, string password, Roles role)
         {
             Id = Guid.NewGuid();

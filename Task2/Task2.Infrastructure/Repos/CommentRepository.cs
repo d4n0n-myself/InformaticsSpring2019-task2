@@ -8,6 +8,8 @@ namespace Task2.Infrastructure.Repos
 {
     public class CommentRepository : ICommentRepository
     {
+        private readonly ApplicationContext _context;
+        
         public CommentRepository(ApplicationContext context)
         {
             _context = context;
@@ -56,14 +58,12 @@ namespace Task2.Infrastructure.Repos
                             && c.UserId.Equals(userId));
 
 
-        public IEnumerable<Comment> Get(Guid postId)
+        public IEnumerable<Comment> GetCommentsForPost(Guid postId)
         {
             var comments = _context.Comments.Where(c => c.PostId.Equals(postId));
             foreach (var comment in comments)
                 comment.UserLogin = _context.Users.First(u => u.Id == comment.UserId)?.Login;
             return comments;
-        }
-
-        private readonly ApplicationContext _context;
+        } 
     }
 }

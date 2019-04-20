@@ -3,7 +3,8 @@ using Castle.DynamicProxy;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Task2.Infrastructure; //
-using Task2.Web.Controllers.Interceptor; //
+
+//
 
 
 namespace Task2.Web

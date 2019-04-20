@@ -51,7 +51,7 @@ namespace Task2.Domain
 
         public bool ContainPost(string header)
         {
-            return _repos.ContainPost(header);
+            return _repos.Contains(header);
         }
 
         public Post Get(string title)
@@ -62,7 +62,7 @@ namespace Task2.Domain
 
         public IEnumerable<Post> Get()
         {
-            return _repos.Get();
+            return _repos.GetAllPosts();
         }
     }
 }

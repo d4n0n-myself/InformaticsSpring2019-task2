@@ -1,12 +1,12 @@
 using System;
-using Microsoft.AspNetCore.Identity.UI.V3.Pages.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
 using Task2.Domain;
-using Task2.Infrastructure.ReposInterfaces;
+using Task2.Web.Filters;
 
 namespace Task2.Web.Controllers
 {
+    [InternalErrorFilter]
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
@@ -20,32 +20,15 @@ namespace Task2.Web.Controllers
         [HttpPost]
         public IActionResult Add(User user)
         {
-            try
-            {
-                var response = _repository.Add(user.Login, user.Password, user.Role);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString());
-            }
+            var response = _repository.Add(user.Login, user.Password, user.Role);
+            return Ok(response);
         }
 
         [HttpPost]
         public IActionResult ChangeRole(Guid userId, Roles newRole)
         {
-            try
-            {
-                _repository.ChangeRole(userId, newRole);
-                
-                return Ok(true);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString());
-            }
+            _repository.ChangeRole(userId, newRole);
+            return Ok(true);
         }
 
         [HttpGet]
@@ -65,32 +48,17 @@ namespace Task2.Web.Controllers
         [HttpGet]
         public IActionResult Get([FromQuery] string login)
         {
-            try
-            {
-                var user = _repository.Get(login);
-                return Ok(user);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString());
-            }
+            var user = _repository.Get(login);
+            return Ok(user);
         }
 
         [HttpPost]
         public IActionResult Delete(string login)
         {
-            try
-            {
-                var user = _repository.Get(login);
-                var response = _repository.Delete(user);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString());
-            }
+            var user = _repository.Get(login);
+            var response = _repository.Delete(user);
+            return Ok(response);
+
         }
     }
 }

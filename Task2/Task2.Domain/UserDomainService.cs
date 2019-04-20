@@ -15,7 +15,8 @@ namespace Task2.Domain
 
         public bool Add(string login, string password, Roles role)
         {
-            return _repos.Add(login, password, role);
+            throw new Exception();
+//            return _repos.Add(login, password, role);
         }
 
         public bool Delete(User user)
@@ -40,7 +41,7 @@ namespace Task2.Domain
 
         public bool ContainUser(string login)
         {
-            return _repos.ContainUser(login);
+            return _repos.Contains(login);
         }
 
         public bool ChangeRole(Guid id, Roles newRole)

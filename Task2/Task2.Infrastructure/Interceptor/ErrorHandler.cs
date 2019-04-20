@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using Castle.Core.Interceptor;
 
-namespace Task2.Web.Controllers.Interceptor
+namespace Task2.Infrastructure.Interceptor
 {
     public class ErrorHandler : IInterceptor
     {

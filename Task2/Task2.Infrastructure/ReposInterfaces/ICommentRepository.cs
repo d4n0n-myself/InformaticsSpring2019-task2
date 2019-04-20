@@ -8,7 +8,7 @@ namespace Task2.Infrastructure.ReposInterfaces
     {
         bool Add(Guid userId, Guid postId, string text);
         bool Delete(Comment comment);
-        IEnumerable<Comment> Get(Guid postId);
+        IEnumerable<Comment> GetCommentsForPost(Guid postId);
         Comment Get(string text, Guid userId, Guid postId);
     }
 }

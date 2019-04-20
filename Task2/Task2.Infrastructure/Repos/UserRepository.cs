@@ -7,6 +7,8 @@ namespace Task2.Infrastructure.Repos
 {
     public class UserRepository : IUserRepository
     {
+        private readonly ApplicationContext _context;
+
         public UserRepository(ApplicationContext context)
         {
             _context = context;
@@ -34,27 +36,6 @@ namespace Task2.Infrastructure.Repos
             }
         }
 
-        public bool Delete(User user)
-        {
-            try
-            {
-                var userForDeleting = _context.Users.FirstOrDefault(u => u.Id.Equals(user.Id)) ??
-                                      throw new ArgumentNullException(nameof(user),
-                                          "No user in database!");
-                _context.Users.Remove(userForDeleting);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-        }
-
-        public User Get(string login) => _context.Users.FirstOrDefault(u => u.Login.Equals(login));
-        public User Get(Guid id) => _context.Users.FirstOrDefault(u => u.Id.Equals(id));
-
         public bool ChangeRole(Guid id, Roles newRole)
         {
             try
@@ -77,8 +58,27 @@ namespace Task2.Infrastructure.Repos
             return user.Password.Equals(password);
         }
 
-        public bool ContainUser(string login) => _context.Users.Any(u => u.Login.Equals(login));
+        public bool Contains(string login) => _context.Users.Any(u => u.Login.Equals(login));
 
-        private readonly ApplicationContext _context;
+        public bool Delete(User user)
+        {
+            try
+            {
+                var userForDeleting = _context.Users.FirstOrDefault(u => u.Id.Equals(user.Id)) ??
+                                      throw new ArgumentNullException(nameof(user),
+                                          "No user in database!");
+                _context.Users.Remove(userForDeleting);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+
+        public User Get(string login) => _context.Users.FirstOrDefault(u => u.Login.Equals(login));
+        public User Get(Guid id) => _context.Users.FirstOrDefault(u => u.Id.Equals(id));
     }
 }

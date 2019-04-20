@@ -8,10 +8,10 @@ namespace Task2.Infrastructure.ReposInterfaces
     {
         bool Add(string title, string videoUrl, string fileLink);
         bool Delete(Post post);
-        bool ContainPost(string header);
+        bool Contains(string header);
         Post Get(string title);
         Post Get(Guid postId);
-        IEnumerable<Post> Get();
+        IEnumerable<Post> GetAllPosts();
         bool Update(Post post);
     }
 }

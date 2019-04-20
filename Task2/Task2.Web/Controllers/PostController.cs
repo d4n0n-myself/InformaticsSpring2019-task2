@@ -1,117 +1,61 @@
-using System;
-using System.IO;
 using System.Linq;
-using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Task2.Core.Entities;
 using Task2.Domain;
-using Task2.Infrastructure.ReposInterfaces;
+using Task2.Web.Filters;
 
 namespace Task2.Web.Controllers
 {
-    [Authorize]
-    [Route("[controller]/[action]")]
-    public class PostController : Controller
-    {
-        private readonly PostDomainService _repository;
+	[Authorize, InternalErrorFilter]
+	[Route("[controller]/[action]")]
+	public class PostController : Controller
+	{
+		private readonly PostDomainService _repository;
 
-        public PostController(PostDomainService repository)
-        {
-            repository = repository;
-        }
-        
-        [Authorize("Admin")]
-        [HttpPost]
-        public IActionResult Add([FromQuery] string title, string video, string fileLink)
-        {
-            try
-            {
-                var response = _repository.Add(title, video, fileLink);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString());
-            }
-        }
+		public PostController(PostDomainService repository)
+		{
+			_repository = repository;
+		}
 
-        //[Authorize("All")]
-        [HttpGet]
-        public IActionResult GetPost([FromQuery] string title)
-        {
-            try
-            {
-                var post = _repository.Get(title);
-                return Ok(post);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.ToString());
-            }
-        }
+		[Authorize("Admin")]
+		[HttpPost]
+		public IActionResult Add([FromQuery] string title, string video, string fileLink)
+		{
+			var response = _repository.Add(title, video, fileLink);
+			return Ok(response);
+		}
 
-        [HttpGet]
-        public Post[] Get()
-        {
-            try
-            {
-                return _repository.Get().ToArray();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
-        }
+		[HttpGet]
+		public IActionResult Contain([FromQuery] string title)
+		{
+			var response = _repository.ContainPost(title);
+			return Ok(response);
+		}
 
-        [HttpPost]
-        public IActionResult Delete(string title)
-        {
-            try
-            {
-                var post = _repository.Get(title);
-                var response = _repository.Delete(post);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e);
-            }
-        }
-        
-        [HttpPost]
-        public IActionResult Update(Post post)
-        {
-            try
-            {
-                var response = _repository.Update(post);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e);
-            }
-        }
+		[HttpPost]
+		public IActionResult Delete(string title)
+		{
+			var post = _repository.Get(title);
 
-        [HttpGet]
-        public IActionResult Contain([FromQuery]string title)
-        {
-            try
-            {
-                var response = _repository.ContainPost(title);
-                return Ok(response);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return BadRequest(e.Message);
-            }
-        }
-    }
+			if (!_repository.Delete(post))
+				return BadRequest();
+			return Ok();
+		}
+
+		[HttpGet]
+		public IActionResult GetPost([FromQuery] string title) =>
+			Ok(_repository.Get(title));
+
+		[HttpGet]
+		public Post[] Get() => _repository.Get().ToArray();
+
+		[HttpPost]
+		public IActionResult Update(Post post)
+		{
+			if (!_repository.Update(post))
+				return BadRequest();
+			return Ok();
+		}
+	}
 }

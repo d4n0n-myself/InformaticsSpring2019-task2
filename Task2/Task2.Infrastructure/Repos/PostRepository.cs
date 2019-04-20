@@ -8,6 +8,8 @@ namespace Task2.Infrastructure.Repos
 {
     public class PostRepository : IPostRepository
     {
+        private readonly ApplicationContext _context;
+
         public PostRepository(ApplicationContext context)
         {
             _context = context;
@@ -35,6 +37,8 @@ namespace Task2.Infrastructure.Repos
             }
         }
 
+        public bool Contains(string header) => _context.Posts.Any(p => p.Title.Equals(header));
+
         public bool Delete(Post post)
         {
             try
@@ -50,7 +54,13 @@ namespace Task2.Infrastructure.Repos
                 return false;
             }
         }
-        
+
+        public Post Get(string title) => _context.Posts.FirstOrDefault(p => p.Title.Equals(title));
+
+        public Post Get(Guid postId) => _context.Posts.FirstOrDefault(p => p.Id.Equals(postId));
+
+        public IEnumerable<Post> GetAllPosts() => _context.Posts;
+
         public bool Update(Post post)
         {
             try
@@ -65,15 +75,5 @@ namespace Task2.Infrastructure.Repos
                 return false;
             }
         }
-        
-        public bool ContainPost(string header) => _context.Posts.Any(p => p.Title.Equals(header));
-
-        public Post Get(string title) => _context.Posts.FirstOrDefault(p => p.Title.Equals(title));
-
-        public Post Get(Guid postId) => _context.Posts.FirstOrDefault(p => p.Id.Equals(postId));
-
-        public IEnumerable<Post> Get() => _context.Posts;
-
-        private readonly ApplicationContext _context;
     }
 }
