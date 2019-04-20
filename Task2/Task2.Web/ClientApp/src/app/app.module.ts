@@ -5,9 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 import {routes} from "./app.routes";
 import {LoginComponent} from "./login/login.component";
@@ -24,9 +21,6 @@ import {RegisterComponent} from "./register/register.component";
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     LoginComponent,
     SinglePostComponent,
     PostsListComponent,
