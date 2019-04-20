@@ -2,21 +2,24 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Task2.Core.Entities;
+using Task2.Domain;
 using Task2.Infrastructure.ReposInterfaces;
 
 namespace Task2.Web.Controllers
 {
+    [Authorize]
     [Route("[controller]/[action]")]
     public class PostController : Controller
     {
-        private readonly IPostRepository _repository;
+        private readonly PostDomainService _repository;
 
-        public PostController(IPostRepository repository)
+        public PostController(PostDomainService repository)
         {
-            _repository = repository;
+            repository = repository;
         }
 
         [HttpPost]
@@ -34,6 +37,7 @@ namespace Task2.Web.Controllers
             }
         }
 
+        [Authorize("All")]
         [HttpGet]
         public IActionResult GetPost([FromQuery] string title)
         {

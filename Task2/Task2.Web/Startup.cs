@@ -48,6 +48,14 @@ namespace Task2.Web
 				};
 			});
 
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy("All", policy =>
+				{
+					policy.RequireClaim("SubStatus", "3");
+				});
+			});
+
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
 			services.AddScoped<IPostRepository, PostRepository>();
