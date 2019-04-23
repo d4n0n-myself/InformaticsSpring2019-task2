@@ -21,16 +21,15 @@ namespace Task2.Web.Controllers
 		[HttpPost]
 		public IActionResult Add([FromQuery] string userId, string postId, string text)
 		{
-			var response = _repository.Add(text, userId, postId);
-			return Ok(response);
+			_repository.Add(text, userId, postId);
+			return Ok();
 		}
 
 		[HttpPost]
 		public IActionResult Delete([FromQuery] string userId, string postId, string text)
 		{
-			var commentForDeletion = _repository.Get(text, userId,  postId);
-			var response = _repository.Delete(commentForDeletion);
-			return Ok(response);
+			_repository.Delete(text, userId, postId);
+			return Ok();
 		}
 
 		[HttpGet]

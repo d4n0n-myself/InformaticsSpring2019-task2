@@ -13,40 +13,14 @@ namespace Task2.Domain
             _repos = repos;
         }
 
-        public bool Add(string login, string password, Roles role)
-        {
-            throw new Exception();
-//            return _repos.Add(login, password, role);
-        }
+        public void Add(string login, string password, Roles role) => _repos.Add(login, password, role);
+        public void ChangeRole(Guid id, Roles newRole) => _repos.ChangeRole(id, newRole);
+        public bool CheckPassword(string login, string password) => _repos.CheckPassword(login, password);
+        public bool ContainUser(string login) => _repos.Contains(login);
+        public void Delete(User user) => _repos.Delete(user);
+        public User Get(string login) => _repos.Get(login);
 
-        public bool Delete(User user)
-        {
-            return _repos.Delete(user);
-        }
-
-        public User Get(string login)
-        {
-            return _repos.Get(login);
-        }
-
-        public User Get(Guid id)
-        {
-            return _repos.Get(id);
-        }
-
-        public bool CheckPassword(string login, string password)
-        {
-            return _repos.CheckPassword(login, password);
-        }
-
-        public bool ContainUser(string login)
-        {
-            return _repos.Contains(login);
-        }
-
-        public bool ChangeRole(Guid id, Roles newRole)
-        {
-            return _repos.ChangeRole(id, newRole);
-        }
+        [Obsolete]
+        public User Get(Guid id) => _repos.Get(id);
     }
 }

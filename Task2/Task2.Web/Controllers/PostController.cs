@@ -22,8 +22,8 @@ namespace Task2.Web.Controllers
 		[HttpPost]
 		public IActionResult Add([FromQuery] string title, string video, string fileLink)
 		{
-			var response = _repository.Add(title, video, fileLink);
-			return Ok(response);
+			_repository.Add(title, video, fileLink);
+			return Ok();
 		}
 
 		[HttpGet]
@@ -37,9 +37,7 @@ namespace Task2.Web.Controllers
 		public IActionResult Delete([FromQuery] string title)
 		{
 			var post = _repository.Get(title);
-
-			if (!_repository.Delete(post))
-				return BadRequest();
+			_repository.Delete(post);
 			return Ok();
 		}
 
@@ -53,8 +51,7 @@ namespace Task2.Web.Controllers
 		[HttpPost]
 		public IActionResult Update(Post post)
 		{
-			if (!_repository.Update(post))
-				return BadRequest();
+			_repository.Update(post);
 			return Ok();
 		}
 	}

@@ -9,52 +9,30 @@ namespace Task2.Infrastructure.Repos
     public class CommentRepository : ICommentRepository
     {
         private readonly ApplicationContext _context;
-        
+
         public CommentRepository(ApplicationContext context)
         {
             _context = context;
         }
 
-        public CommentRepository()
+        public void Add(Guid userId, Guid postId, string text)
         {
-            _context = new ApplicationContext();
+            _context.Comments.Add(new Comment(userId, postId, text));
+            _context.SaveChanges();
         }
 
-        public bool Add(Guid userId, Guid postId, string text)
+        public void Delete(Guid userId, Guid postId, string text)
         {
-            try
-            {
-                _context.Comments.Add(new Comment(userId, postId, text));
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-        }
-
-        public bool Delete(Comment comment)
-        {
-            try
-            {
-                var commentForDeleting = _context.Comments.First(c => c.Id.Equals(comment.Id));
-                _context.Comments.Remove(commentForDeleting);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
+            var commentForDeleting =
+                _context.Comments.First(c => c.UserId == userId && c.PostId == postId && c.Text == text);
+            _context.Comments.Remove(commentForDeleting);
+            _context.SaveChanges();
         }
 
         public Comment Get(string text, Guid userId, Guid postId) =>
             _context.Comments
-                .First(c => c.Text.Equals(text) 
-                            && c.PostId.Equals(postId) 
+                .First(c => c.Text.Equals(text)
+                            && c.PostId.Equals(postId)
                             && c.UserId.Equals(userId));
 
 
@@ -64,6 +42,12 @@ namespace Task2.Infrastructure.Repos
             foreach (var comment in comments)
                 comment.UserLogin = _context.Users.First(u => u.Id == comment.UserId)?.Login;
             return comments;
-        } 
+        }
+
+        public Comment Get(Guid userId, Guid postId, string text)
+        {
+            return _context.Comments.FirstOrDefault(c => c.Text == text && c.PostId == postId && c.UserId == userId) ??
+                   throw new ArgumentException();
+        }
     }
 }

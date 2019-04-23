@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Task2.Core.Entities;
 using Task2.Infrastructure.ReposInterfaces;
 
@@ -14,14 +15,49 @@ namespace Task2.Domain
             _repos = repos;
         }
 
-        public bool Add(string title, string videoUrl, string fileLink) => _repos.Add(title, videoUrl, fileLink);
-        public bool ContainPost(string header) => _repos.Contains(header);
-        public bool Delete(Post post) => _repos.Delete(post);
-        public Post Get(string title) => _repos.Get(title);
+        public void Add(string title, string videoUrl, string fileLink)
+        {
+            if (new[] {title, videoUrl, fileLink}.Any(x => x == null))
+                throw new ArgumentNullException();
+            if (!Uri.TryCreate(videoUrl, UriKind.Absolute, out var url))
+                throw new ArgumentException($"Bad URL: {videoUrl}");
+
+            _repos.Add(title, videoUrl, fileLink);
+        }
+
+        public bool ContainPost(string header)
+        {
+            if (header == null)
+                throw new ArgumentNullException();
+            return _repos.Contains(header);
+        }
+
+        public void Delete(Post post)
+        {
+            if (post == null)
+                throw new ArgumentNullException();
+            if (!_repos.Contains(post.Title))
+                throw new ArgumentException($"No post with {post.Title} header");
+
+            _repos.Delete(post);
+        }
+
+        public Post Get(string title)
+        {
+            if (title == null)
+                throw new ArgumentNullException();
+
+            return _repos.Get(title);
+        }
+
+        [Obsolete]
         public Post Get(Guid postId) => _repos.Get(postId);
 
         public Post Get(Guid postId, Roles role)
         {
+            if(postId == Guid.Empty)
+                throw new ArgumentException("Guid must have a value");
+            
             if (role == Roles.Junior)
             {
                 var enumerable = _repos.Get(postId);
@@ -36,6 +72,13 @@ namespace Task2.Domain
         }
 
         public IEnumerable<Post> Get() => _repos.GetAllPosts() ?? new List<Post>();
-        public bool Update(Post post) => _repos.Update(post);
+
+        public void Update(Post post)
+        {
+            if (!_repos.Contains(post.Title))
+                throw new ArgumentException($"No post with {post.Title} header");
+
+            _repos.Update(post);
+        }
     }
 }

@@ -14,41 +14,18 @@ namespace Task2.Infrastructure.Repos
             _context = context;
         }
 
-        public UserRepository()
+        public void Add(string login, string password, Roles role)
         {
-            _context = new ApplicationContext();
+            if (_context.Users.Any(u => u.Login == login))
+                throw new ArgumentException("No user in database!");
+            _context.Users.Add(new User(login, password, role));
+            _context.SaveChanges();
         }
 
-        public bool Add(string login, string password, Roles role)
+        public void ChangeRole(Guid id, Roles newRole)
         {
-            try
-            {
-                if (_context.Users.Any(u => u.Login == login))
-                    throw new ArgumentException("No user in database!");
-                _context.Users.Add(new User(login, password, role));
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
-        }
-
-        public bool ChangeRole(Guid id, Roles newRole)
-        {
-            try
-            {
-                _context.Users.First(u => u.Id.Equals(id)).Role = newRole;
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
+            _context.Users.First(u => u.Id.Equals(id)).Role = newRole;
+            _context.SaveChanges();
         }
 
         public bool CheckPassword(string login, string password)
@@ -60,22 +37,13 @@ namespace Task2.Infrastructure.Repos
 
         public bool Contains(string login) => _context.Users.Any(u => u.Login.Equals(login));
 
-        public bool Delete(User user)
+        public void Delete(User user)
         {
-            try
-            {
-                var userForDeleting = _context.Users.FirstOrDefault(u => u.Id.Equals(user.Id)) ??
-                                      throw new ArgumentNullException(nameof(user),
-                                          "No user in database!");
-                _context.Users.Remove(userForDeleting);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
+            var userForDeleting = _context.Users.FirstOrDefault(u => u.Id.Equals(user.Id)) ??
+                                  throw new ArgumentNullException(nameof(user),
+                                      "No user in database!");
+            _context.Users.Remove(userForDeleting);
+            _context.SaveChanges();
         }
 
         public User Get(string login) => _context.Users.FirstOrDefault(u => u.Login.Equals(login));

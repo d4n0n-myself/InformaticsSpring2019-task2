@@ -6,12 +6,12 @@ namespace Task2.Infrastructure.ReposInterfaces
 {
     public interface IPostRepository
     {
-        bool Add(string title, string videoUrl, string fileLink);
-        bool Delete(Post post);
+        void Add(string title, string videoUrl, string fileLink);
+        void Delete(Post post);
         bool Contains(string header);
         Post Get(string title);
         Post Get(Guid postId);
         IEnumerable<Post> GetAllPosts();
-        bool Update(Post post);
+        void Update(Post post);
     }
 }

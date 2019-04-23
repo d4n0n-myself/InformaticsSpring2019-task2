@@ -10,55 +10,54 @@ namespace Task2.Web.Controllers
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
-        private readonly UserDomainService _repository;
+        private readonly UserDomainService _service;
 
-        public UserController(UserDomainService repository)
+        public UserController(UserDomainService service)
         {
-            _repository = repository;
+            _service = service;
         }
 
         [HttpPost]
         public IActionResult Add(User user)
         {
-            var response = _repository.Add(user.Login, user.Password, user.Role);
-            return Ok(response);
+            _service.Add(user.Login, user.Password, user.Role);
+            return Ok();
         }
 
         [HttpPost]
         public IActionResult ChangeRole(Guid userId, Roles newRole)
         {
-            _repository.ChangeRole(userId, newRole);
+            _service.ChangeRole(userId, newRole);
             return Ok(true);
         }
 
         [HttpGet]
         public IActionResult ContainsUser([FromQuery] string login)
         {
-            var response = _repository.ContainUser(login);
+            var response = _service.ContainUser(login);
             return Ok(response);
         }
 
         [HttpGet]
         public IActionResult Check(User user)
         {
-            var response = _repository.CheckPassword(user.Login, user.Password);
+            var response = _service.CheckPassword(user.Login, user.Password);
             return Ok(response);
         }
 
         [HttpGet]
         public IActionResult Get([FromQuery] string login)
         {
-            var user = _repository.Get(login);
+            var user = _service.Get(login);
             return Ok(user);
         }
 
         [HttpPost]
         public IActionResult Delete(string login)
         {
-            var user = _repository.Get(login);
-            var response = _repository.Delete(user);
-            return Ok(response);
-
+            var user = _service.Get(login);
+            _service.Delete(user);
+            return Ok();
         }
     }
 }
