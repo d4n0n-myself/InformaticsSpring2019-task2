@@ -14,10 +14,11 @@ namespace Task2.Domain
             _repos = repos;
         }
 
-        public Post Get(Guid postId)
-        {
-            return _repos.Get(postId);
-        }
+        public bool Add(string title, string videoUrl, string fileLink) => _repos.Add(title, videoUrl, fileLink);
+        public bool ContainPost(string header) => _repos.Contains(header);
+        public bool Delete(Post post) => _repos.Delete(post);
+        public Post Get(string title) => _repos.Get(title);
+        public Post Get(Guid postId) => _repos.Get(postId);
 
         public Post Get(Guid postId, Roles role)
         {
@@ -34,35 +35,7 @@ namespace Task2.Domain
             }
         }
 
-        public bool Update(Post post)
-        {
-            return _repos.Update(post);
-        }
-
-        public bool Add(string title, string videoUrl, string fileLink)
-        {
-            return _repos.Add(title, videoUrl, fileLink);
-        }
-
-        public bool Delete(Post post)
-        {
-            return _repos.Delete(post);
-        }
-
-        public bool ContainPost(string header)
-        {
-            return _repos.Contains(header);
-        }
-
-        public Post Get(string title)
-        {
-            return _repos.Get(title);
-        }
-
-
-        public IEnumerable<Post> Get()
-        {
-            return _repos.GetAllPosts();
-        }
+        public IEnumerable<Post> Get() => _repos.GetAllPosts() ?? new List<Post>();
+        public bool Update(Post post) => _repos.Update(post);
     }
 }

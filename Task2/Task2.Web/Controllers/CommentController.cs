@@ -1,34 +1,34 @@
 using System;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
-using Task2.Infrastructure.ReposInterfaces;
+using Task2.Domain;
 using Task2.Web.Filters;
 
 namespace Task2.Web.Controllers
 {
-	[Authorize, InternalErrorFilter]
+//	[Authorize]
+	[InternalErrorFilter]
 	[Route("[controller]/[action]")]
 	public class CommentController : Controller
 	{
-		private readonly ICommentRepository _repository;
+		private readonly CommentDomainService _repository;
 
-		public CommentController(ICommentRepository repository)
+		public CommentController(CommentDomainService repository)
 		{
 			_repository = repository;
 		}
 
 		[HttpPost]
-		public IActionResult Add(Comment comment)
+		public IActionResult Add([FromQuery] string userId, string postId, string text)
 		{
-			var response = _repository.Add(comment.UserId, comment.PostId, comment.Text);
+			var response = _repository.Add(text, userId, postId);
 			return Ok(response);
 		}
 
 		[HttpPost]
-		public IActionResult Delete(Comment comment)
+		public IActionResult Delete([FromQuery] string userId, string postId, string text)
 		{
-			var commentForDeletion = _repository.Get(comment.Text, comment.UserId, comment.PostId);
+			var commentForDeletion = _repository.Get(text, userId,  postId);
 			var response = _repository.Delete(commentForDeletion);
 			return Ok(response);
 		}

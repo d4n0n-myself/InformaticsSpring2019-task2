@@ -16,6 +16,7 @@ namespace Task2.Web
 			
 			services.AddScoped<UserDomainService>();
 			services.AddScoped<PostDomainService>();
+			services.AddScoped<CommentDomainService>();
 			services.AddScoped<TokenService>();
 		}
 	}

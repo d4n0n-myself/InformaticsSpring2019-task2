@@ -34,7 +34,7 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Delete(string title)
+		public IActionResult Delete([FromQuery] string title)
 		{
 			var post = _repository.Get(title);
 
