@@ -28,20 +28,14 @@ export class HttpService {
     return this.http.get<Post[]>(`${this.baseUrl}Post/Get`, this.httpOptions);
   }
 
-  logIn(username: string, password: string) {
+  logIn(username: string, password: string) : Observable<LoginModel> {
     let url = `${this.baseUrl}Token/Login?username=${username}&password=${password}`;
-    return this.http.get<LoginModel>(url).subscribe(result => {
-      console.log("123");
-      let model : LoginModel = result;
-      localStorage.setItem('token', model.token);
-    }, error => {
-      console.log("errLogin");
-    })
+    return this.http.get<LoginModel>(url);
   }
 
   register(username: string, password: string) {
     let url = `${this.baseUrl}Token/Register?username=${username}&password=${password}`;
-    return this.http.get<LoginModel>(url).subscribe(result => {
+    return this.http.post<LoginModel>(url, null).subscribe(result => {
       localStorage.setItem('token', result.token);
     }, error => {
       console.log("errorr");
@@ -49,7 +43,7 @@ export class HttpService {
   }
 }
 
-interface LoginModel {
+export interface LoginModel {
   token: string;
 }
 

@@ -17,7 +17,7 @@ namespace Task2.Infrastructure.Repos
         public void Add(string login, string password, Roles role)
         {
             if (_context.Users.Any(u => u.Login == login))
-                throw new ArgumentException("No user in database!");
+                throw new ArgumentException("User already in database!");
             _context.Users.Add(new User(login, password, role));
             _context.SaveChanges();
         }
