@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Task2.Core.Entities;
+using Task2.Domain;
 using Task2.Infrastructure;
 using Task2.Infrastructure.Repos;
 using Task2.Infrastructure.ReposInterfaces;
@@ -48,34 +49,36 @@ namespace Task2.Web
 				};
 			});
 
-			services.AddAuthorization(options =>
-			{
-				options.AddPolicy("All", policy =>
-				{
-					policy.RequireClaim("SubStatus", "3");
-				});
-			});
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy => { policy.RequireClaim("Role", "1"); });
+                options.AddPolicy("Junior", policy => { policy.RequireClaim("Role", "4"); });
+                options.AddPolicy("Middle", policy => { policy.RequireClaim("Role", "3"); });
+                options.AddPolicy("Senior", policy => { policy.RequireClaim("Role", "2"); });
+                options.AddPolicy("All", policy => { policy.RequireClaim("Role"); });
+            });
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-			services.AddScoped<IPostRepository, PostRepository>();
-			services.AddScoped<IUserRepository, UserRepository>();
-			services.AddScoped<ICommentRepository, CommentRepository>();
-
-			services.AddSwaggerGen(options =>
-			{
-				options.SwaggerDoc("1.0.0", new OpenApiInfo()
-				{
-					Title = "d4n0n's API",
-					Version = "1.0.0",
-					Contact = new OpenApiContact()
-					{
-						Email = "danon.sibaev@yandex.ru",
-						Name = "d4n0n_myself"
-					},
-					Description = "Informatics Spring 2019 project. Uses ASP.NET Core MVC pattern."
-				});
-			});
+            services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<UserDomainService>();
+            services.AddScoped<PostDomainService>();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("1.0.0", new OpenApiInfo()
+                {
+                    Title = "d4n0n's API",
+                    Version = "1.0.0",
+                    Contact = new OpenApiContact()
+                    {
+                        Email = "danon.sibaev@yandex.ru",
+                        Name = "d4n0n_myself"
+                    },
+                    Description = "Informatics Spring 2019 project. Uses ASP.NET Core MVC pattern."
+                });
+            });
 
 			// In production, the Angular files will be served from this directory
 			services.AddSpaStaticFiles(configuration => { configuration.RootPath = "ClientApp/dist"; });

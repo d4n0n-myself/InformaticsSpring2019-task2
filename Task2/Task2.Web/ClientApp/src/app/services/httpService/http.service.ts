@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import {Observable} from "rxjs";
-import {WeatherForecast} from "../../fetch-data/fetch-data.component";
 
 @Injectable({
   providedIn: 'root'
@@ -30,22 +29,23 @@ export class HttpService {
   }
 
   logIn(username: string, password: string) {
-    let url = `${this.baseUrl}Token/GetToken?username=${username}&password=${password}`;
+    let url = `${this.baseUrl}Token/Login?username=${username}&password=${password}`;
     return this.http.get<LoginModel>(url).subscribe(result => {
-      localStorage.setItem('token', result.token);
+      console.log("123");
+      let model : LoginModel = result;
+      localStorage.setItem('token', model.token);
+    }, error => {
+      console.log("errLogin");
     })
   }
 
   register(username: string, password: string) {
-    let url = `${this.baseUrl}Token/GetToken?username=${username}&password=${password}`;
+    let url = `${this.baseUrl}Token/Register?username=${username}&password=${password}`;
     return this.http.get<LoginModel>(url).subscribe(result => {
       localStorage.setItem('token', result.token);
+    }, error => {
+      console.log("errorr");
     })
-  }
-
-  getForecast(): Observable<WeatherForecast[]> {
-    let url = `${this.baseUrl}SampleData/WeatherForecasts`;
-    return this.http.get<WeatherForecast[]>(url, this.httpOptions)
   }
 }
 

@@ -50,7 +50,22 @@ namespace Task2.Infrastructure.Repos
                 return false;
             }
         }
-
+        
+        public bool Update(Post post)
+        {
+            try
+            {
+                _context.Posts.Update(post);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+        }
+        
         public bool ContainPost(string header) => _context.Posts.Any(p => p.Title.Equals(header));
 
         public Post Get(string title) => _context.Posts.FirstOrDefault(p => p.Title.Equals(title));

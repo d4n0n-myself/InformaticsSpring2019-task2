@@ -11,43 +11,29 @@ namespace Task2.Web.Controllers
 	[Route("[controller]/[action]")]
 	public class TokenController : Controller
 	{
+		private readonly TokenService _tokenService;
+
+		public TokenController(TokenService tokenService)
+		{
+			_tokenService = tokenService;
+		}
+
 		[HttpPost]
 		public IActionResult Register([FromQuery] string username, string password)
 		{
 			//Users.AddNew
-
-			return GetToken(username, password);
+			if (username == "1")
+				return Ok("gfy");
+				
+			return Ok( new { token = $"Bearer {_tokenService.GetToken()}" });
 		}
-		
+
 		[HttpGet]
-		public IActionResult GetToken([FromQuery] string username, string password)
+		public IActionResult Login([FromQuery] string username, string password)
 		{
-			var identity = GetIdentity();
-			if (identity == null)
-				return StatusCode(500);
-
-			var key = AuthOptions.GetSymmetricSecurityKey();
-			var now = DateTime.UtcNow;
-			var jwt = new JwtSecurityToken(
-				AuthOptions.Issuer,
-				AuthOptions.Audience,
-				identity.Claims,
-				now,
-				now.AddMinutes(AuthOptions.Lifetime),
-				new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
-			var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-			return Ok(new {Token = $"Bearer {token}"});
-		}
-
-		private ClaimsIdentity GetIdentity()
-		{
-			var user = new {Login = "admin", Role = "admin", Password = "admin"};
-			var claims = new List<Claim> {new Claim("Role", user.Role)};
-
-			var claimsIdentity =
-				new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-					ClaimsIdentity.DefaultRoleClaimType);
-			return claimsIdentity;
+			// Users.Login // check credentials
+			
+			return Ok( new { token = $"Bearer {_tokenService.GetToken()}" });
 		}
 	}
 }

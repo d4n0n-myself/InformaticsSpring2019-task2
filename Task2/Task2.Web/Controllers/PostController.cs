@@ -21,7 +21,8 @@ namespace Task2.Web.Controllers
         {
             repository = repository;
         }
-
+        
+        [Authorize("Admin")]
         [HttpPost]
         public IActionResult Add([FromQuery] string title, string video, string fileLink)
         {
@@ -37,7 +38,7 @@ namespace Task2.Web.Controllers
             }
         }
 
-        [Authorize("All")]
+        //[Authorize("All")]
         [HttpGet]
         public IActionResult GetPost([FromQuery] string title)
         {
@@ -74,6 +75,21 @@ namespace Task2.Web.Controllers
             {
                 var post = _repository.Get(title);
                 var response = _repository.Delete(post);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return BadRequest(e);
+            }
+        }
+        
+        [HttpPost]
+        public IActionResult Update(Post post)
+        {
+            try
+            {
+                var response = _repository.Update(post);
                 return Ok(response);
             }
             catch (Exception e)
