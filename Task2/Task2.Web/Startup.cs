@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using Castle.Core.Interceptor;
 using Castle.DynamicProxy;
@@ -45,6 +46,14 @@ namespace Task2.Web
 					IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
 					ValidateIssuerSigningKey = true,
 				};
+			});
+
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy("All", policy =>
+				{
+					policy.RequireClaim("SubStatus", "3");
+				});
 			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -114,6 +123,7 @@ namespace Task2.Web
 
 				if (env.IsDevelopment())
 				{
+					spa.Options.StartupTimeout = new TimeSpan(days: 0, hours: 0, minutes: 1, seconds: 30);
 					spa.UseAngularCliServer(npmScript: "start");
 				}
 			});

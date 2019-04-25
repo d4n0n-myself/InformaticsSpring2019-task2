@@ -1,0 +1,169 @@
+.register {
+  background: url(background-background-image-clear-sky-1054222.jpg
+  ) 100% 100% no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  min-height: 10vh;
+  font-family: 'Muli', sans-serif;
+  overflow: hidden;
+
+}
+
+.login-form {
+  background: rgba(0, 0, 0, 0.4117647058823529);
+  max-width: 500px;
+  margin: 2em auto 0;
+  padding: 5em;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: block;
+}
+
+form {
+  display: block;
+  margin-top: 0em;
+}
+
+.form-group {
+  margin: 20px 0;
+}
+
+.form-group label {
+  display: block;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #d2d2d2;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+label {
+  cursor: default;
+}
+
+.group {
+  display: flex;
+  padding: 15px 5px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.group i {
+  color: #bdfc54;
+  font-size: 20px;
+  padding: 0 10px;
+}
+
+.fa, .fas {
+  font-weight: 900;
+}
+
+.fa, .fas, .far, .fal, .fab {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 2;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  background: transparent;
+  color: #000;
+}
+
+input {
+  padding: 1px 0px;
+  -webkit-appearance: textfield;
+  background-color: white;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em;
+  outline: none;
+}
+
+button {
+  background: #bdfc54;;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  padding: 12px 60px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 6px;
+}
+
+h2 {
+  margin: 0;
+  color: #bdfc54;
+  font-size: 25px;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 1px;
+  padding-bottom: 30px;
+}
+
+p.register-p {
+  color: #eee;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 2em;
+}
+
+.register {
+  color: #00BCD4;
+  text-decoration: none;
+}
+
+footer {
+  padding: 5em 0;
+  text-align: center;
+}
+
+p.copyright-agileinfo {
+  font-size: 15px;
+  /* letter-spacing: 2px; */
+  color: #fff;
+  font-weight: 300;
+}
+
+footer p a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: underline;
+}
+
+a {
+  color: #eee;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.form-control:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.btn-success :focus{
+  color: #fff;
+  background-color: #1ccc44;
+  border-color: #1ccc44;
+}

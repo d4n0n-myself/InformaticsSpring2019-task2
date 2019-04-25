@@ -1,18 +1,38 @@
+header {
+  font-family: 'Muli', sans-serif;
+}
 a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
+
 }
+
 
 html {
   font-size: 14px;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+
+/*.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}*/
+
+
+button {
+  background: #bdfc54;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  padding: 12px 12px;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 6px;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
+
+
+
+

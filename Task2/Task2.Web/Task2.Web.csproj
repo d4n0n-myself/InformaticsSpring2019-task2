@@ -24,6 +24,7 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Include="ClientApp\src\app\app.routes.ts" />
+        <Content Include="ClientApp\src\app\nav-menu\nav-menu.componen.js" />
     </ItemGroup>
     
     <ItemGroup>
@@ -36,12 +37,17 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Task2.Core\Task2.Core.csproj" />
+      <ProjectReference Include="..\Task2.Domain\Task2.Domain.csproj" />
       <ProjectReference Include="..\Task2.Infrastructure\Task2.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ClientApp\src\app\register-layout" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
