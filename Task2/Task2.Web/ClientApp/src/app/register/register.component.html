@@ -1,0 +1,30 @@
+<div class="register">
+  <div class="login-form">
+    <h2>Create new account</h2>
+    <form #personForm="ngForm" (ngSubmit)="Update()">
+      <div class="form-group">
+        <label for="user">Username:</label>
+        <div class="group">
+          <i class="fas fa-user"></i>
+          <input class="form-control" placeholder="Username" name="usr" id="user" type="text" [(ngModel)]="username"
+                 required="required">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pass">Password:</label>
+        <div class="group">
+          <i class="fas fa-unlock"></i>
+          <input class="form-control" placeholder="Password" name="pass" id="pass" type="password"
+                 [(ngModel)]="password" required="required">
+        </div>
+      </div>
+      <button class="btn btn-success" type="submit">Register</button>
+    </form>
+
+  </div>
+  <footer>
+    <p class="copyright-agileinfo">2019, April</p>
+  </footer>
+</div>
+
+

@@ -1,43 +1,47 @@
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+using Task2.Core.Entities;
+using Task2.Domain;
+using Task2.Web.Filters;
+using Task2.Web.Services;
 
 namespace Task2.Web.Controllers
 {
+	[InternalErrorFilter]
 	[Route("[controller]/[action]")]
 	public class TokenController : Controller
 	{
-		public IActionResult GetToken([FromQuery] string username, string password)
-		{
-			var identity = GetIdentity();
-			if (identity == null)
-				return StatusCode(500);
+		private readonly TokenService _tokenService;
+		private readonly UserDomainService _userService;
 
-			var key = AuthOptions.GetSymmetricSecurityKey();
-			var now = DateTime.UtcNow;
-			var jwt = new JwtSecurityToken(
-				AuthOptions.Issuer,
-				AuthOptions.Audience,
-				identity.Claims,
-				now,
-				now.AddMinutes(AuthOptions.Lifetime),
-				new SigningCredentials(key, SecurityAlgorithms.HmacSha256));
-			var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-			return Ok(new { Token = $"Bearer {token}"});
+		public TokenController(TokenService tokenService, UserDomainService userService)
+		{
+			_tokenService = tokenService;
+			_userService = userService;
 		}
 
-		private ClaimsIdentity GetIdentity()
+		[HttpPost]
+		public IActionResult Register([FromQuery] string username, string password)
 		{
-			var user = new {Login = "admin", Role = "admin", Password = "admin"};
-			var claims = new List<Claim> {new Claim("Role", user.Role)};
+			_userService.Add(username, password, Roles.Junior);
 
-			var claimsIdentity =
-				new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-					ClaimsIdentity.DefaultRoleClaimType);
-			return claimsIdentity;
+			return Ok(new {token = $"Bearer {_tokenService.GetToken()}"});
+		}
+
+		[HttpGet]
+		public IActionResult Login([FromQuery] string username, string password)
+		{
+			if (!_userService.ContainUser(username))
+			{
+				throw new ArgumentException($"Cant find user {username}");
+			}
+
+			if (!_userService.CheckPassword(username, password))
+			{
+				throw new ArgumentException($"Invalid credentials on {username}");
+			}
+
+			return Ok(new {token = $"Bearer {_tokenService.GetToken()}"});
 		}
 	}
 }

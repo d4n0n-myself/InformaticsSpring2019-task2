@@ -4,4 +4,8 @@
         <TargetFramework>netcoreapp2.2</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Task2.Infrastructure\Task2.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

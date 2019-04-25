@@ -6,8 +6,9 @@ namespace Task2.Infrastructure.ReposInterfaces
 {
     public interface ICommentRepository
     {
-        bool Add(Guid userId, Guid postId, string text);
-        bool Delete(Comment comment);
-        IEnumerable<Comment> Get(Guid postId);
+        void Add(Guid userId, Guid postId, string text);
+        void Delete(Guid userId, Guid postId, string text);
+        IEnumerable<Comment> GetCommentsForPost(Guid postId);
+        Comment Get(Guid userId, Guid postId, string text);
     }
 }

@@ -4,6 +4,11 @@ namespace Task2.Core.Entities
 {
     public class Comment
     {
+        public Comment()
+        {
+            Id = Guid.NewGuid();
+        }
+
         public Comment(Guid userId, Guid postId, string text)
         {
             Id = Guid.NewGuid();

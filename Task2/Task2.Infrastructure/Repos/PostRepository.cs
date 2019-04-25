@@ -8,57 +8,42 @@ namespace Task2.Infrastructure.Repos
 {
     public class PostRepository : IPostRepository
     {
+        private readonly ApplicationContext _context;
+
         public PostRepository(ApplicationContext context)
         {
             _context = context;
         }
 
-        public PostRepository()
+        public void Add(string title, string videoUrl, string fileLink)
         {
-            _context = new ApplicationContext();
+            if (_context.Posts.Any(p => p.Title == title))
+                throw new ArgumentException("Name already exists!");
+            _context.Posts.Add(new Post(title, videoUrl, fileLink));
+            _context.SaveChanges();
         }
 
-        public bool Add(string title, string videoUrl, string fileLink)
+        public bool Contains(string header) => _context.Posts.Any(p => p.Title.Equals(header));
+
+        public void Delete(Post post)
         {
-            try
-            {
-                if (_context.Posts.Any(p => p.Title == title))
-                    throw new ArgumentException("Name already exists!");
-                _context.Posts.Add(new Post(title, videoUrl, fileLink));
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
+            var postForDeleting = _context.Posts.First(p => p.Id.Equals(post.Id));
+            _context.Posts.Remove(postForDeleting);
+            _context.SaveChanges();
         }
 
-        public bool Delete(Post post)
+        public Post Get(string title) => _context.Posts.FirstOrDefault(p => p.Title.Equals(title)) ??
+                                         throw new ArgumentException($"No post with {title}");
+
+        public Post Get(Guid postId) => _context.Posts.FirstOrDefault(p => p.Id.Equals(postId)) ??
+                                        throw new ArgumentException($"No post with this postId!");
+
+        public IEnumerable<Post> GetAllPosts() => _context.Posts;
+
+        public void Update(Post post)
         {
-            try
-            {
-                var postForDeleting = _context.Posts.First(p => p.Id.Equals(post.Id));
-                _context.Posts.Remove(postForDeleting);
-                _context.SaveChanges();
-                return true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return false;
-            }
+            _context.Posts.Update(post);
+            _context.SaveChanges();
         }
-
-        public bool ContainPost(string header) => _context.Posts.Any(p => p.Title.Equals(header));
-
-        public Post Get(string title) => _context.Posts.FirstOrDefault(p => p.Title.Equals(title));
-
-        public Post Get(Guid postId) => _context.Posts.FirstOrDefault(p => p.Id.Equals(postId));
-
-        public IEnumerable<Post> Get() => _context.Posts;
-
-        private readonly ApplicationContext _context;
     }
 }

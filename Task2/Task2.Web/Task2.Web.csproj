@@ -13,8 +13,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Castle.DynamicProxy" Version="2.2.0" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +24,7 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Include="ClientApp\src\app\app.routes.ts" />
+        <Content Include="ClientApp\src\app\nav-menu\nav-menu.componen.js" />
     </ItemGroup>
     
     <ItemGroup>
@@ -29,18 +32,22 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-        <None Include="ClientApp\src\app\services\httpService\http-service.service.spec.ts" />
-        <None Include="ClientApp\src\app\services\httpService\http-service.service.ts" />
+        <None Include="ClientApp\src\app\login-layout\animal-dawn-desktop-backgrounds-875858.jpg" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Task2.Core\Task2.Core.csproj" />
+      <ProjectReference Include="..\Task2.Domain\Task2.Domain.csproj" />
       <ProjectReference Include="..\Task2.Infrastructure\Task2.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ClientApp\src\app\register-layout" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
