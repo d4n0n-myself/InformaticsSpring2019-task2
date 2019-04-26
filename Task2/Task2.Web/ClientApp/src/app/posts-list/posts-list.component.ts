@@ -12,7 +12,7 @@ export class PostsListComponent implements OnInit {
 
   constructor(private httpService: HttpService, public router: Router) { }
 
-   posts = new Array<Post>();
+  posts = new Array<Post>();
   // posts = [
   //   { title: 'Mr. Nice', videoUrl: 'https://www.youtube.com/watch?v=iAC1_a924H8', fileLink:'gfvdgfv' },
   //   { title: 'Nardhschsdvhcvdshvdshvco' },
