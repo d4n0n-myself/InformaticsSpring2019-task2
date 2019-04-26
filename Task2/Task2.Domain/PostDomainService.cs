@@ -57,9 +57,9 @@ namespace Task2.Domain
 
         public Post Get(Guid postId, Roles role)
         {
-            if(postId == Guid.Empty)
+            if (postId == Guid.Empty)
                 throw new ArgumentException("Guid must have a value");
-            
+
             if (role == Roles.Junior)
             {
                 var enumerable = _repos.Get(postId);

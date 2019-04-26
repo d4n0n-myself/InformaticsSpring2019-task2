@@ -23,6 +23,7 @@ namespace Task2.Domain
         }
 
         public void ChangeRole(Guid id, Roles newRole) => _repos.ChangeRole(id, newRole);
+
         public bool CheckPassword(string login, string password)
         {
             var encryptedReceivedPassword = CypherPassword(password);
@@ -36,10 +37,7 @@ namespace Task2.Domain
         public void Delete(User user) => _repos.Delete(user);
         public User Get(string login) => _repos.Get(login);
 
-        [Obsolete]
-        public User Get(Guid id) => _repos.Get(id);
-
-        public string CypherPassword(string password)
+        private string CypherPassword(string password)
         {
             var bytes = Encoding.Unicode.GetBytes(password);
             var csp = new MD5CryptoServiceProvider();

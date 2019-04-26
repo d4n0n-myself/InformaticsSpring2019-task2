@@ -42,7 +42,8 @@ export class HttpService {
     return this.http.post<LoginModel>(url, null).subscribe(result => {
       localStorage.setItem('token', result.token);
     }, error => {
-      console.log("Registration Error");
+      alert('Failed to register a new user!');
+      console.log(error.error);
     })
   }
 }
