@@ -13,7 +13,7 @@ export const routes = [
       {path: '', pathMatch: 'full', redirectTo: '/posts'},
       {path: 'single', component: SinglePostComponent},
       {path: 'posts', component: PostsListComponent},
-      {path:'add-post',component:AddPostComponent}
+      {path: 'add-post', component: AddPostComponent}
     ]
   },
   {
