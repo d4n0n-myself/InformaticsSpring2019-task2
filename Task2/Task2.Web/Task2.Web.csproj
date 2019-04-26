@@ -33,6 +33,8 @@
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
         <None Include="ClientApp\src\app\login-layout\animal-dawn-desktop-backgrounds-875858.jpg" />
+        <None Include="ClientApp\src\app\services\delay\delay.service.spec.ts" />
+        <None Include="ClientApp\src\app\services\delay\delay.service.ts" />
     </ItemGroup>
 
     <ItemGroup>

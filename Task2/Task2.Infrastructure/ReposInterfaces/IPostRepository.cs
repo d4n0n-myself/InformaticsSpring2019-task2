@@ -11,7 +11,7 @@ namespace Task2.Infrastructure.ReposInterfaces
         bool Contains(string header);
         Post Get(string title);
         Post Get(Guid postId);
-        IEnumerable<Post> GetAllPosts();
+        Post[] GetAllPosts();
         void Update(Post post);
     }
 }

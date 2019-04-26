@@ -19,7 +19,9 @@ namespace Task2.Domain
         {
             if (new[] {title, videoUrl, fileLink}.Any(x => x == null))
                 throw new ArgumentNullException();
-            if (!Uri.TryCreate(videoUrl, UriKind.Absolute, out var url))
+           
+            //TODO - убрать undefined с фронта
+            if (videoUrl != "undefined" && !Uri.TryCreate(videoUrl, UriKind.Absolute, out var url))
                 throw new ArgumentException($"Bad URL: {videoUrl}");
 
             _repos.Add(title, videoUrl, fileLink);
@@ -71,7 +73,7 @@ namespace Task2.Domain
             }
         }
 
-        public IEnumerable<Post> Get() => _repos.GetAllPosts() ?? new List<Post>();
+        public Post[] Get() => _repos.GetAllPosts() ?? new Post[0];
 
         public void Update(Post post)
         {
