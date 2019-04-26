@@ -1,4 +1,8 @@
 using System;
+using System.Linq;
+using System.Security;
+using System.Security.Cryptography;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
 using Task2.Domain;
@@ -24,7 +28,6 @@ namespace Task2.Web.Controllers
 		public IActionResult Register([FromQuery] string username, string password)
 		{
 			_userService.Add(username, password, Roles.Junior);
-
 			return Ok(new {token = $"Bearer {_tokenService.GetToken()}"});
 		}
 
@@ -32,14 +35,9 @@ namespace Task2.Web.Controllers
 		public IActionResult Login([FromQuery] string username, string password)
 		{
 			if (!_userService.ContainUser(username))
-			{
 				throw new ArgumentException($"Cant find user {username}");
-			}
 
-			if (!_userService.CheckPassword(username, password))
-			{
-				throw new ArgumentException($"Invalid credentials on {username}");
-			}
+			_userService.CheckPassword(username, password);
 
 			return Ok(new {token = $"Bearer {_tokenService.GetToken()}"});
 		}

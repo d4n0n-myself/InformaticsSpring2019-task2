@@ -28,13 +28,6 @@ namespace Task2.Infrastructure.Repos
             _context.SaveChanges();
         }
 
-        public bool CheckPassword(string login, string password)
-        {
-            var user = _context.Users.FirstOrDefault(u => u.Login == login);
-            if (user == null) throw new ArgumentNullException(nameof(user), "No user in database!");
-            return user.Password.Equals(password);
-        }
-
         public bool Contains(string login) => _context.Users.Any(u => u.Login.Equals(login));
 
         public void Delete(User user)
