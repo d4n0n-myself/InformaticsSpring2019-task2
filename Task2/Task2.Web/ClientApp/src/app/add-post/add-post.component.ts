@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpService} from "../services/httpService/http.service";
-import {Router} from "@angular/router";
+import {HttpService} from '../services/httpService/http.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-post',
@@ -9,18 +9,16 @@ import {Router} from "@angular/router";
 })
 export class AddPostComponent implements OnInit {
 
-  constructor(private http:HttpService, public router: Router) { }
+  constructor(private http: HttpService, public router: Router) { }
 
+  title: string;
+  video: string;
+  file: string;
   ngOnInit() {
   }
 
-  title:string;
-  video:string;
-  file:string;
-
-  Add()
-  {
+  Add() {
     this.http.addPost(this.title, this.video, this.file);
-    this.router.navigate(["/posts"])
+    this.router.navigate(['/posts'])
   }
 }
