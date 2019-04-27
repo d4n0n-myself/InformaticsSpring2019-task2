@@ -1,57 +1,30 @@
-<div class="wrapper row0">
-</div>
-<div class="bgded overlay" style="background-image:url('');">
-  <div id="breadcrumb" class="hoc clear">
-    <h6 class="heading"> course.author.name }}</h6>
-  </div>
-</div>
-<div class="wrapper row3">
-  <hr style="color: #dddddd">
-  <main class="hoc container clear">
-    <div class="content three_quarter first">
-      <div id="post">
-        <h1> {{ post.title}}</h1>
-      </div>
-      <div id="comments">
-        <h2>Comments</h2>
-        <ul>
-          <template>
-            <li>
-              <article>
-                <header>
-                  <figure class="avatar"><img src="" alt=""></figure>
-                  <address>
-                    By <a href="#">comment.author.name}}</a>
-                  </address>
-                  <time>comment.datetime}}</time>
-                </header>
-                <div class="comcont">
-                  <p>comment.text}}</p>
-                </div>
-              </article>
-            </li>
-          </template>
-        </ul>
-      </div>
-    </div>
-    <div class="sidebar one_quarter">
-      <h6>Tiers</h6>
-      <nav class="sdb_holder">
-        <ul style="list-style: none">
-          <template >
-            <li><a href="#" style=""> tier.name }}</a></li>
-          </template>
-        </ul>
-      </nav>
-    </div>
-  </main>
-</div>
-<div class="wrapper row5" style="border: none">
-  <div class="clear">
-  </div>
-  <hr style="color: #dddddd" >
-  <div id="copyright" class="hoc clear" style="border: none">
-    <p class="fl_left">2019 Spring Task 2 Patreon</p>
-  </div>
-</div>
+<section class="banner-section">
+</section>
+<section class="post-content-section">
+  <div class="container">
 
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
+
+        <h1 class="text">{{post.title}}</h1>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12">
+        <p>{{post.text}}</p>
+
+
+<br>
+
+        <div *ngIf="post.videoUrl"><iframe width="480" height="320" src="{{post.videoUrl}}" type="video/mp4">
+        </iframe></div>
+<br>
+        <div *ngIf="post.fileLink">
+          <a href="{{post.fileLink}}" class="lead" >Feel free to download extra files from author!</a>
+        </div>
+      </div>
+    </div>
+
+
+  </div> <!-- /container -->
+</section>
+
+<section class="footer-link"></section>

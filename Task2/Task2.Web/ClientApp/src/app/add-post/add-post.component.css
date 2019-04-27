@@ -1,0 +1,27 @@
+.title {
+  font-family: 'Muli', sans-serif;
+  padding: 25px;
+}
+
+.form-group {
+  font-family: 'Muli', sans-serif;
+  font-size: 16px;
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+button {
+
+  background: #b0ff57;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  padding: 15px 100px;
+  cursor: pointer;
+  border-radius: 6px;
+  text-align: center;
+
+}

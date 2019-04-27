@@ -13,13 +13,10 @@ html {
   font-size: 14px;
 }
 
-/*.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}*/
 
 
 button {
-  background: #bdfc54;
+  background: #b0ff57;
   color: #ffffff;
   font-size: 13px;
   font-weight: bold;
@@ -31,8 +28,6 @@ button {
   width: 100%;
   border-radius: 6px;
 }
-
-
 
 
 
