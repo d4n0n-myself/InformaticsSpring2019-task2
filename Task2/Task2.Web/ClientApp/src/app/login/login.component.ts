@@ -19,13 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   async Update() {
-    this.httpService.logIn(this.username, this.password).subscribe(result => {
-      let model: LoginModel = result;
-      localStorage.setItem('token', model.token);
-    }, error  => {
-      alert('Invalid credentials');
-      console.log(error.error);
-    });
+    this.httpService.logIn(this.username, this.password);
     await this.delay.delay(1000);
     this.router.navigate(['/']);
   }

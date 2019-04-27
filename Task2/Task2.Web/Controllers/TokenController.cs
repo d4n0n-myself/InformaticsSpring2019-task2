@@ -28,7 +28,7 @@ namespace Task2.Web.Controllers
 		public IActionResult Register([FromQuery] string username, string password)
 		{
 			_userService.Add(username, password, Roles.Junior);
-			return Ok(new {token = $"Bearer {_tokenService.GetToken()}"});
+			return Ok(new {login = username, token = $"Bearer {_tokenService.GetToken(username)}"});
 		}
 
 		[HttpGet]
@@ -39,7 +39,7 @@ namespace Task2.Web.Controllers
 
 			_userService.CheckPassword(username, password);
 
-			return Ok(new {token = $"Bearer {_tokenService.GetToken()}"});
+			return Ok(new {login = username, token = $"Bearer {_tokenService.GetToken(username)}"});
 		}
 	}
 }

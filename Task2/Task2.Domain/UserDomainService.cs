@@ -22,7 +22,7 @@ namespace Task2.Domain
             _repos.Add(login, encryptedPass, role);
         }
 
-        public void ChangeRole(Guid id, Roles newRole) => _repos.ChangeRole(id, newRole);
+        public void ChangeRole(string login, Roles newRole) => _repos.ChangeRole(login, newRole);
 
         public bool CheckPassword(string login, string password)
         {

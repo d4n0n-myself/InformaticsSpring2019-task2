@@ -22,9 +22,11 @@ namespace Task2.Infrastructure.Repos
             _context.SaveChanges();
         }
 
-        public void ChangeRole(Guid id, Roles newRole)
+        public void ChangeRole(string login, Roles newRole)
         {
-            _context.Users.First(u => u.Id.Equals(id)).Role = newRole;
+            var user = _context.Users.First(u => u.Login == login);
+            user.Role = newRole;
+            _context.Users.Update(user);
             _context.SaveChanges();
         }
 

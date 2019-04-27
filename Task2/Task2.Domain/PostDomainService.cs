@@ -19,7 +19,7 @@ namespace Task2.Domain
         {
             if (new[] {title, videoUrl, fileLink}.Any(x => x == null))
                 throw new ArgumentNullException();
-           
+
             //TODO - убрать undefined с фронта
             if (videoUrl != "undefined" && !Uri.TryCreate(videoUrl, UriKind.Absolute, out var url))
                 throw new ArgumentException($"Bad URL: {videoUrl}");
@@ -55,20 +55,17 @@ namespace Task2.Domain
         [Obsolete]
         public Post Get(Guid postId) => _repos.Get(postId);
 
-        public Post Get(Guid postId, Roles role)
+        public Post Get(string title, Roles role)
         {
-            if (postId == Guid.Empty)
-                throw new ArgumentException("Guid must have a value");
-
             if (role == Roles.Junior)
             {
-                var enumerable = _repos.Get(postId);
+                var enumerable = _repos.Get(title);
                 enumerable.FileLink = null;
                 return enumerable;
             }
             else
             {
-                var enumerable = _repos.Get(postId);
+                var enumerable = _repos.Get(title);
                 return enumerable;
             }
         }

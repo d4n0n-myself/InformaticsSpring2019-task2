@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import {Observable} from "rxjs";
+import {Role} from "../../buy-subscription/buy-subscription.component";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,13 @@ export class HttpService {
     })
   }
 
+  buySubscription(newRole:number) : Observable<LoginModel> {
+    let url = `${this.baseUrl}User/ChangeRole?userLogin=${localStorage.getItem('user')}&newRole=${newRole}`;
+    return this.http.post<LoginModel>(url, null, this.httpOptions);
+  }
+
   getPost(title:string) : Observable<Post> {
-    var url = `${this.baseUrl}Post/GetPost?title=${title}`;
+    let url = `${this.baseUrl}Post/GetPost?title=${title}`;
     return this.http.get<Post>(url, this.httpOptions);
   }
 
@@ -32,15 +38,27 @@ export class HttpService {
     return this.http.get<Post[]>(`${this.baseUrl}Post/Get`, this.httpOptions);
   }
 
-  logIn(username: string, password: string) : Observable<LoginModel> {
+  getPrices() : Observable<Role[]> {
+    return this.http.get<Role[]>('url', this.httpOptions);
+  }
+
+  logIn(username: string, password: string) {
     let url = `${this.baseUrl}Token/Login?username=${username}&password=${password}`;
-    return this.http.get<LoginModel>(url);
+    this.http.get<LoginModel>(url).subscribe(result => {
+      let model: LoginModel = result;
+      localStorage.setItem('token', model.token);
+      localStorage.setItem('user', model.login);
+    }, error => {
+      alert('Invalid credentials');
+      console.log(error.error);
+    });
   }
 
   register(username: string, password: string) {
     let url = `${this.baseUrl}Token/Register?username=${username}&password=${password}`;
     return this.http.post<LoginModel>(url, null).subscribe(result => {
       localStorage.setItem('token', result.token);
+      localStorage.setItem('user', result.login);
     }, error => {
       alert('Failed to register a new user!');
       console.log(error.error);
@@ -50,13 +68,10 @@ export class HttpService {
 
 export interface LoginModel {
   token: string;
+  login: string;
 }
 
 export class Post {
-  constructor() {
-
-  }
-
   id: string;
   title: string;
   videoUrl: string;

@@ -10,6 +10,6 @@ namespace Task2.Infrastructure.ReposInterfaces
         User Get(string login);
         User Get(Guid id);
         bool Contains(string login);
-        void ChangeRole(Guid id, Roles newRole);
+        void ChangeRole(string login, Roles newRole);
     }
 }

@@ -11,7 +11,12 @@ export class AuthenticationService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    let decodedToken = this.jwtHelper.decodeToken(token);
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  public getUserRole(): string {
+    const token = localStorage.getItem('token');
+    let decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken['Role'];
   }
 }

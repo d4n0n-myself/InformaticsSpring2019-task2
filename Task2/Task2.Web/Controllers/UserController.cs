@@ -1,8 +1,10 @@
 using System;
+using System.Security.Cryptography.Xml;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
 using Task2.Domain;
 using Task2.Web.Filters;
+using Task2.Web.Services;
 
 namespace Task2.Web.Controllers
 {
@@ -10,53 +12,55 @@ namespace Task2.Web.Controllers
     [Route("[controller]/[action]")]
     public class UserController : Controller
     {
-        private readonly UserDomainService _service;
+        private readonly UserDomainService _userService;
+        private readonly TokenService _tokenService;
 
-        public UserController(UserDomainService service)
+        public UserController(UserDomainService userService, TokenService tokenService)
         {
-            _service = service;
+            _userService = userService;
+            _tokenService = tokenService;
         }
 
         [HttpPost]
         public IActionResult Add(User user)
         {
-            _service.Add(user.Login, user.Password, user.Role);
+            _userService.Add(user.Login, user.Password, user.Role);
             return Ok();
         }
 
         [HttpPost]
-        public IActionResult ChangeRole(Guid userId, Roles newRole)
+        public IActionResult ChangeRole(string userLogin, Roles newRole)
         {
-            _service.ChangeRole(userId, newRole);
-            return Ok(true);
+            _userService.ChangeRole(userLogin, newRole);
+            return Ok(new {token = $"Bearer {_tokenService.GetToken(userLogin)}"});
         }
 
         [HttpGet]
         public IActionResult ContainsUser([FromQuery] string login)
         {
-            var response = _service.ContainUser(login);
+            var response = _userService.ContainUser(login);
             return Ok(response);
         }
 
         [HttpGet]
         public IActionResult Check(User user)
         {
-            var response = _service.CheckPassword(user.Login, user.Password);
+            var response = _userService.CheckPassword(user.Login, user.Password);
             return Ok(response);
         }
 
         [HttpGet]
         public IActionResult Get([FromQuery] string login)
         {
-            var user = _service.Get(login);
+            var user = _userService.Get(login);
             return Ok(user);
         }
 
         [HttpPost]
         public IActionResult Delete(string login)
         {
-            var user = _service.Get(login);
-            _service.Delete(user);
+            var user = _userService.Get(login);
+            _userService.Delete(user);
             return Ok();
         }
     }

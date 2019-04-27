@@ -3,14 +3,22 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Task2.Domain;
 
 namespace Task2.Web.Services
 {
 	public class TokenService
 	{
-		public string GetToken()
+		private readonly UserDomainService _userService;
+
+		public TokenService(UserDomainService userService)
 		{
-			var identity = GetIdentity();
+			_userService = userService;
+		}
+
+		public string GetToken(string username)
+		{
+			var identity = GetIdentity(username);
 
 			var key = AuthOptions.GetSymmetricSecurityKey();
 			var now = DateTime.Now;
@@ -25,10 +33,10 @@ namespace Task2.Web.Services
 			return token;
 		}
 
-		private ClaimsIdentity GetIdentity()
+		private ClaimsIdentity GetIdentity(string login)
 		{
-			var user = new {Login = "admin", Role = "admin", Password = "admin"};
-			var claims = new List<Claim> {new Claim("Role", user.Role)};
+			var user = _userService.Get(login);
+			var claims = new List<Claim> {new Claim("Role", user.Role.ToString())};
 
 			var claimsIdentity =
 				new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

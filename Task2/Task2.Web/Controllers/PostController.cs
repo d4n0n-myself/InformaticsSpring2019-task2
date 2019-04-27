@@ -44,21 +44,15 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult GetPost([FromQuery] string title) =>
-			Ok(_repository.Get(title));
+		public IActionResult GetPost([FromQuery] string title)
+		{
+			var roleClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "Role") ??
+			                throw new ArgumentException("No role");
+			return Ok(_repository.Get(title, Enum.Parse<Roles>(roleClaim.Value)));
+		}
 
 		[HttpGet]
-		public Post[] Get()
-		{
-			var stopwatch = new Stopwatch();
-			stopwatch.Start();
-			var x= _repository.Get();
-			stopwatch.Stop();
-			Console.WriteLine();
-			Console.WriteLine(stopwatch.ElapsedMilliseconds);
-			Console.WriteLine();
-			return x;
-		}
+		public Post[] Get() => _repository.Get();
 
 		[HttpPost]
 		public IActionResult Update(Post post)

@@ -10,18 +10,19 @@ import {BuySubscriptionComponent} from "./buy-subscription/buy-subscription.comp
 
 export const routes = [
   {
-    path: '', component: HomeLayoutComponent/*, canActivate: [AuthGuardService]*/, children: [
+    path: '', component: HomeLayoutComponent, canActivate: [AuthGuardService], children: [
       {path: '', pathMatch: 'full', redirectTo: '/posts'},
       {path: 'single', component: SinglePostComponent},
       {path: 'posts', component: PostsListComponent},
-      {path: 'add-post', component: AddPostComponent}
+      {path: 'add-post', component: AddPostComponent},
+      {path: 'subscribe', component: BuySubscriptionComponent}
     ]
   },
   {
     path: '', component: LoginLayoutComponent, children: [
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-      {path: 'subscribe', component: BuySubscriptionComponent}
+      {path: 'choose-subscription', component: BuySubscriptionComponent}
     ]
   }
 ];

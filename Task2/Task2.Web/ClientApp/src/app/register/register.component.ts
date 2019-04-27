@@ -22,6 +22,6 @@ export class RegisterComponent implements OnInit {
   async Update() {
     this.httpService.register(this.username, this.password);
     await this.delay.delay(1000);
-    this.router.navigate(['/']);
+    this.router.navigate(['/choose-subscription']);
   }
 }
