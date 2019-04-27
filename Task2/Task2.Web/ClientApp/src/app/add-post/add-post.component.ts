@@ -17,7 +17,11 @@ export class AddPostComponent implements OnInit {
   ngOnInit() {
   }
 
-  Add() {
+  Add()
+  {
+    console.log(this.title);
+    console.log(this.video);
+    console.log(this.file);
     this.http.addPost(this.title, this.video, this.file);
     this.router.navigate(['/posts'])
   }

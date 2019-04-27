@@ -15,6 +15,11 @@
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" [routerLink]='["/posts"]'>Posts</a>
+          <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+            <a class="nav-link text-dark" [routerLink]='["/"]'>Home</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]='["link-active"]'>
+            <a class="nav-link text-dark" [routerLink]='["/add-post"]'>Add post</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" [routerLink]='["/buy-subscription"]'>Change Subscription</a>

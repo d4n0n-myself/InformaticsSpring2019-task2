@@ -38,7 +38,7 @@ namespace Task2.Infrastructure.Repos
         public Post Get(Guid postId) => _context.Posts.FirstOrDefault(p => p.Id.Equals(postId)) ??
                                         throw new ArgumentException($"No post with this postId!");
 
-        public IEnumerable<Post> GetAllPosts() => _context.Posts;
+        public Post[] GetAllPosts() => _context.Posts.ToArray();
 
         public void Update(Post post)
         {

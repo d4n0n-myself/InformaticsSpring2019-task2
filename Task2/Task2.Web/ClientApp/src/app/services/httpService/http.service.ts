@@ -16,12 +16,16 @@ export class HttpService {
 
   addPost(title: string, video: string, file: string) {
     var url = `${this.baseUrl}Post/Add?fileLink=${file}&video=${video}&title=${title}`;
-    this.http.post(url, null).subscribe();
+    this.http.post(url, null, this.httpOptions).subscribe(() => {
+
+    }, error => {
+      alert(error.message)
+    })
   }
 
   getPost(title:string) : Observable<Post> {
     var url = `${this.baseUrl}Post/GetPost?title=${title}`;
-    return this.http.get<Post>(url);
+    return this.http.get<Post>(url, this.httpOptions);
   }
 
   getPosts() : Observable<Post[]> {
@@ -38,7 +42,8 @@ export class HttpService {
     return this.http.post<LoginModel>(url, null).subscribe(result => {
       localStorage.setItem('token', result.token);
     }, error => {
-      console.log("errorr");
+      alert('Failed to register a new user!');
+      console.log(error.error);
     })
   }
 }

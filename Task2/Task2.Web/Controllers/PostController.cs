@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +20,7 @@ namespace Task2.Web.Controllers
 			_repository = repository;
 		}
 
-		[Authorize("Admin")]
+//		[Authorize("Admin")]
 		[HttpPost]
 		public IActionResult Add([FromQuery] string title, string video, string fileLink)
 		{
@@ -46,7 +48,17 @@ namespace Task2.Web.Controllers
 			Ok(_repository.Get(title));
 
 		[HttpGet]
-		public Post[] Get() => _repository.Get().ToArray();
+		public Post[] Get()
+		{
+			var stopwatch = new Stopwatch();
+			stopwatch.Start();
+			var x= _repository.Get();
+			stopwatch.Stop();
+			Console.WriteLine();
+			Console.WriteLine(stopwatch.ElapsedMilliseconds);
+			Console.WriteLine();
+			return x;
+		}
 
 		[HttpPost]
 		public IActionResult Update(Post post)
