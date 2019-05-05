@@ -5,26 +5,57 @@
 
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
-
+<br>
         <h1 class="text">{{post.title}}</h1>
       </div>
       <div class="col-lg-9 col-md-9 col-sm-12">
-        <p>{{post.text}}</p>
 
 
-<br>
 
-        <div *ngIf="post.videoUrl === undefined || post.videoUrl === null"><iframe width="480" height="320" src="{{post.videoUrl}}" type="video/mp4">
-        </iframe></div>
-<br>
-        <div *ngIf="post.fileLink === undefined || post.fileLink === null">
+<br><br>
+
+        <iframe width="480" height="320" src="{{post.videoUrl}}" type="video/mp4">
+
+        </iframe>
+<br><br>
+
+
+        <!--<div *ngIf="post.fileLink === undefined || post.fileLink === null">-->
           <a href="{{post.fileLink}}" class="lead" >Feel free to download extra files from author!</a>
-        </div>
+        <!--</div>-->
       </div>
+
+
+      <form>
+        <div>
+
+          <div class="form-group">
+            <label for="comment">Write your comment:</label>
+            <input [(ngModel)]="comment" type="text" class="form-control" id="comment"
+                   name="fileLink">
+            <br><br>
+            <button type="submit" (click)="Add()" class="btn btn-success">Comment</button>
+          </div>
+        </div>
+
+
+      </form>
+
     </div>
 
 
   </div> <!-- /container -->
 </section>
+
+
+
+<div class="grid grid-pad">
+  <a *ngFor="let comment of comments" class="col-1-4"
+     >
+    <div class="module hero">
+      <h4>{{ comment.text}}</h4>
+    </div>
+  </a>
+</div>
 
 <section class="footer-link"></section>

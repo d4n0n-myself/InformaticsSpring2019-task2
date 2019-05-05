@@ -24,6 +24,15 @@ export class HttpService {
     })
   }
 
+  addComment(text: string, postId: string){
+    var url = `${this.baseUrl}Comment/Add?userLogin=${localStorage.getItem('user')}&postId=${postId}&text=${text}`;
+    this.http.post(url, null, this.httpOptions).subscribe(() => {
+
+    }, error => {
+      alert(error.message)
+    })
+  }
+
   buySubscription(newRole:number) : Observable<LoginModel> {
     let url = `${this.baseUrl}User/ChangeRole?userLogin=${localStorage.getItem('user')}&newRole=${newRole}`;
     return this.http.post<LoginModel>(url, null, this.httpOptions);
@@ -36,6 +45,10 @@ export class HttpService {
 
   getPosts() : Observable<Post[]> {
     return this.http.get<Post[]>(`${this.baseUrl}Post/Get`, this.httpOptions);
+  }
+
+  getComments(postId: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.baseUrl}Comment/Get?postId=${postId}`, this.httpOptions);
   }
 
   getPrices() : Observable<Role[]> {

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
 using Task2.Domain;
@@ -12,6 +13,7 @@ namespace Task2.Web.Controllers
 	public class CommentController : Controller
 	{
 		private readonly CommentDomainService _repository;
+		private readonly UserDomainService _userService;
 
 		public CommentController(CommentDomainService repository)
 		{
@@ -19,8 +21,9 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Add([FromQuery] string userId, string postId, string text)
+		public IActionResult Add([FromQuery] string userLogin, string postId, string text)
 		{
+			var userId = _userService.Get(userLogin).Id.ToString();
 			_repository.Add(text, userId, postId);
 			return Ok();
 		}
@@ -33,12 +36,14 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Get([FromQuery] string postId)
+		public Comment[] Get([FromQuery] string postId)
 		{
 			if (!Guid.TryParse(postId, out var guidPostId))
 				throw new ArgumentException("Failed to parse guid");
 			var comments = _repository.GetCommentsForPost(guidPostId);
-			return Ok(comments);
+			return comments.ToArray();
 		}
+		
+		
 	}
 }
