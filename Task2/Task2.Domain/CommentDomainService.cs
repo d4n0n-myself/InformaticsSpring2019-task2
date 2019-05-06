@@ -15,10 +15,10 @@ namespace Task2.Domain
             _repository = repository;
         }
 
-        public void Add(string text, string userId, string postId)
+        public void Add(string text, User user, string postId)
         {
-            var (guidUserId, guidPostId) = CheckAndParseArguments(text, userId, postId);
-            _repository.Add(guidUserId, guidPostId, text);
+            var (guidUserId, guidPostId) = CheckAndParseArguments(text, Guid.Empty.ToString(), postId);
+            _repository.Add(user, guidPostId, text);
         }
 
         public void Delete(string text, string userId, string postId)
@@ -33,6 +33,8 @@ namespace Task2.Domain
                 throw new ArgumentException(nameof(postId));
             return _repository.GetCommentsForPost(postId);
         }
+
+        public IEnumerable<Comment> GetAll() => _repository.GetAll();
 
         public Comment Get(string text, string userId, string postId)
         {

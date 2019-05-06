@@ -17,6 +17,7 @@ import {HomeLayoutComponent} from "./home-layout/home-layout.component";
 import {LoginLayoutComponent} from "./login-layout/login-layout.component";
 import {RegisterComponent} from "./register/register.component";
 import { BuySubscriptionComponent } from './buy-subscription/buy-subscription.component';
+import {RepliesComponent} from "./replies/replies.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BuySubscriptionComponent } from './buy-subscription/buy-subscription.co
     HomeLayoutComponent,
     LoginLayoutComponent,
     RegisterComponent,
-    BuySubscriptionComponent
+    BuySubscriptionComponent,
+    RepliesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   async Update() {
     this.httpService.logIn(this.username, this.password);
-    await this.delay.delay(1000);
+    await this.delay.delay(3000);
     this.router.navigate(['/']);
   }
 

@@ -12,6 +12,11 @@ export class SinglePostComponent implements OnInit {
 
   post = new Post();
 
+  commentText: string;
+
+  addComment() {
+    this.httpService.addComment(this.commentText);
+  }
   ngOnInit() {
     this.httpService.getPost(localStorage.getItem('post')).subscribe(result => {
       this.post = result;

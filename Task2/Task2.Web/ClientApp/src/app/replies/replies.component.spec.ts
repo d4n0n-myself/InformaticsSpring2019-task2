@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterLayoutComponent } from './register-layout.component';
+import { RepliesComponent } from './replies.component';
 
-describe('RegisterLayoutComponent', () => {
-  let component: RegisterLayoutComponent;
-  let fixture: ComponentFixture<RegisterLayoutComponent>;
+describe('RepliesComponent', () => {
+  let component: RepliesComponent;
+  let fixture: ComponentFixture<RepliesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterLayoutComponent ]
+      declarations: [ RepliesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterLayoutComponent);
+    fixture = TestBed.createComponent(RepliesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -15,6 +15,11 @@ export class HttpService {
 
   httpOptions = {headers: {'Authorization': localStorage.getItem('token')}};
 
+  addComment(text: string) {
+    var url = `${this.baseUrl}Comment/Add?text=${text}`;
+    this.http.post(url,null, this.httpOptions).subscribe(result => { });
+  }
+
   addPost(title: string, video: string, file: string) {
     var url = `${this.baseUrl}Post/Add?fileLink=${file}&video=${video}&title=${title}`;
     this.http.post(url, null, this.httpOptions).subscribe(() => {
@@ -27,6 +32,10 @@ export class HttpService {
   buySubscription(newRole:number) : Observable<LoginModel> {
     let url = `${this.baseUrl}User/ChangeRole?userLogin=${localStorage.getItem('user')}&newRole=${newRole}`;
     return this.http.post<LoginModel>(url, null, this.httpOptions);
+  }
+
+  getComments() : Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.baseUrl}Comment/GetAll`, this.httpOptions);
   }
 
   getPost(title:string) : Observable<Post> {
@@ -76,4 +85,9 @@ export class Post {
   title: string;
   videoUrl: string;
   fileLink: string
+}
+
+export interface Comment {
+  userLogin: string,
+  text: string
 }

@@ -36,7 +36,11 @@ namespace Task2.Web.Services
 		private ClaimsIdentity GetIdentity(string login)
 		{
 			var user = _userService.Get(login);
-			var claims = new List<Claim> {new Claim("Role", user.Role.ToString())};
+			var claims = new List<Claim>
+			{
+				new Claim("UserLogin", user.Login),
+				new Claim("Role", user.Role.ToString())
+			};
 
 			var claimsIdentity =
 				new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

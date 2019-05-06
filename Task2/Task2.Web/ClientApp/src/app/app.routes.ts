@@ -7,6 +7,7 @@ import {LoginLayoutComponent} from "./login-layout/login-layout.component";
 import {RegisterComponent} from "./register/register.component";
 import {AddPostComponent} from "./add-post/add-post.component";
 import {BuySubscriptionComponent} from "./buy-subscription/buy-subscription.component";
+import {RepliesComponent} from "./replies/replies.component";
 
 export const routes = [
   {
@@ -15,7 +16,8 @@ export const routes = [
       {path: 'single', component: SinglePostComponent},
       {path: 'posts', component: PostsListComponent},
       {path: 'add-post', component: AddPostComponent},
-      {path: 'subscribe', component: BuySubscriptionComponent}
+      {path: 'subscribe', component: BuySubscriptionComponent},
+      {path: 'replies', component: RepliesComponent}
     ]
   },
   {

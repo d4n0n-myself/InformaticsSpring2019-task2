@@ -15,9 +15,9 @@ namespace Task2.Infrastructure.Repos
             _context = context;
         }
 
-        public void Add(Guid userId, Guid postId, string text)
+        public void Add(User user, Guid postId, string text)
         {
-            _context.Comments.Add(new Comment(userId, postId, text));
+            _context.Comments.Add(new Comment(user.Id, postId, text) { UserLogin = user.Login});
             _context.SaveChanges();
         }
 
@@ -29,11 +29,8 @@ namespace Task2.Infrastructure.Repos
             _context.SaveChanges();
         }
 
-        public Comment Get(string text, Guid userId, Guid postId) =>
-            _context.Comments
-                .First(c => c.Text.Equals(text)
-                            && c.PostId.Equals(postId)
-                            && c.UserId.Equals(userId));
+        public IEnumerable<Comment> GetAll() =>
+            _context.Comments.AsEnumerable();
 
 
         public IEnumerable<Comment> GetCommentsForPost(Guid postId)

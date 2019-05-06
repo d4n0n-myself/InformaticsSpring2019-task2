@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
 using Task2.Domain;
@@ -12,16 +13,23 @@ namespace Task2.Web.Controllers
 	public class CommentController : Controller
 	{
 		private readonly CommentDomainService _repository;
+		private readonly UserDomainService _userService;
 
-		public CommentController(CommentDomainService repository)
+		public CommentController(CommentDomainService repository, UserDomainService userService)
 		{
 			_repository = repository;
+			_userService = userService;
 		}
 
 		[HttpPost]
-		public IActionResult Add([FromQuery] string userId, string postId, string text)
+		public IActionResult Add([FromQuery] string text)
 		{
-			_repository.Add(text, userId, postId);
+			var userLoginClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserLogin") ?? throw new ArgumentException();
+			var user = _userService.Get(userLoginClaim.Value);
+			//TODO
+			// var postId = ....
+			
+			_repository.Add(text, user, Guid.Empty.ToString());
 			return Ok();
 		}
 
@@ -33,12 +41,18 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Get([FromQuery] string postId)
+		public IActionResult GetByPostId([FromQuery] string postId)
 		{
 			if (!Guid.TryParse(postId, out var guidPostId))
 				throw new ArgumentException("Failed to parse guid");
 			var comments = _repository.GetCommentsForPost(guidPostId);
 			return Ok(comments);
+		}
+
+		[HttpGet]
+		public IActionResult GetAll()
+		{
+			return Ok(_repository.GetAll().ToArray());
 		}
 	}
 }

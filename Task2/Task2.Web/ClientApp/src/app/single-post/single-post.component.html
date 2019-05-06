@@ -9,16 +9,17 @@
         <h1 class="text">{{post.title}}</h1>
       </div>
       <div class="col-lg-9 col-md-9 col-sm-12">
-        <p>{{post.text}}</p>
 
 
-<br>
+        <br>
 
-        <div *ngIf="post.videoUrl === undefined || post.videoUrl === null"><iframe width="480" height="320" src="{{post.videoUrl}}" type="video/mp4">
-        </iframe></div>
-<br>
+        <div *ngIf="post.videoUrl === undefined || post.videoUrl === null">
+          <iframe width="480" height="320" src="{{post.videoUrl}}" type="video/mp4">
+          </iframe>
+        </div>
+        <br>
         <div *ngIf="post.fileLink === undefined || post.fileLink === null">
-          <a href="{{post.fileLink}}" class="lead" >Feel free to download extra files from author!</a>
+          <a href="{{post.fileLink}}" class="lead">Feel free to download extra files from author!</a>
         </div>
       </div>
     </div>
@@ -26,5 +27,19 @@
 
   </div> <!-- /container -->
 </section>
+
+<div>
+  Add Comment
+  <br>
+  <form ngForm="#commentForm">
+    <div class="form-group">
+      <label for="text">Fill text:</label>
+      <input [(ngModel)]="commentText" type="text" class="form-control" id="text"
+             name="text">
+    </div>
+    <br>
+    <button type="submit" (click)="addComment()" class="btn btn-success">Submit</button>
+  </form>
+</div>
 
 <section class="footer-link"></section>
