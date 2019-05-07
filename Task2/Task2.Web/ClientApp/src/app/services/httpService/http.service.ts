@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import {Observable} from "rxjs";
 import {Role} from "../../buy-subscription/buy-subscription.component";
+import {DelayService} from "../delay/delay.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,11 @@ import {Role} from "../../buy-subscription/buy-subscription.component";
 export class HttpService {
   baseUrl: string;
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private delay: DelayService) {
     this.baseUrl = baseUrl;
   }
 
+  receivedPosts = new Array<Post>();
   httpOptions = {headers: {'Authorization': localStorage.getItem('token')}};
 
   addComment(text: string) {
@@ -32,6 +34,10 @@ export class HttpService {
   buySubscription(newRole:number) : Observable<LoginModel> {
     let url = `${this.baseUrl}User/ChangeRole?userLogin=${localStorage.getItem('user')}&newRole=${newRole}`;
     return this.http.post<LoginModel>(url, null, this.httpOptions);
+  }
+
+  deletePost(postTitle :string) {
+    this.http.post(`${this.baseUrl}Post/Delete?title=${postTitle}`, null, this.httpOptions).subscribe(result => {});
   }
 
   getComments() : Observable<Comment[]> {
@@ -80,7 +86,7 @@ export interface LoginModel {
   login: string;
 }
 
-export class Post {
+export interface Post {
   id: string;
   title: string;
   videoUrl: string;

@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService, Post} from "../services/httpService/http.service";
+import {AuthenticationService} from "../services/authentication/authentication.service";
 
 @Component({
   selector: 'app-single-post',
@@ -8,9 +9,9 @@ import {HttpService, Post} from "../services/httpService/http.service";
 })
 export class SinglePostComponent implements OnInit {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private auth:AuthenticationService) { }
 
-  post = new Post();
+  post : Post;
 
   commentText: string;
 
@@ -21,5 +22,10 @@ export class SinglePostComponent implements OnInit {
     this.httpService.getPost(localStorage.getItem('post')).subscribe(result => {
       this.post = result;
     });
+    console.log(this.auth.getUserRole())
+  }
+
+  deletePost() {
+    this.httpService.deletePost(this.post.title);
   }
 }

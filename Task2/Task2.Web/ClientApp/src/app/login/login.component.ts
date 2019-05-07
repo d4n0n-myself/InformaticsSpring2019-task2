@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   }
 
   async Update() {
-    this.httpService.logIn(this.username, this.password);
-    await this.delay.delay(3000);
-    this.router.navigate(['/']);
+    await this.httpService.logIn(this.username, this.password);
+    await this.delay.delay(300);
+    await this.router.navigate(['/posts']);
   }
 
   RedirectToRegister() {
