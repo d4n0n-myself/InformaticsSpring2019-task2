@@ -16,14 +16,14 @@ section {
 /*}*/
 
 .post-title-block {
-  margin: 20px ;
+  /*margin: 20px ;*/
   font-family: 'Muli', sans-serif;
 }
 
 .post-title-block h1 {
   font-family: 'Muli', sans-serif;
   color: #000000;
-  font-size: 50pt;
+  font-size: 30pt;
   text-transform: capitalize;
 }
 
@@ -38,4 +38,23 @@ section {
 a {
   text-decoration: none;
 
+}
+
+.btn-danger {
+  text-transform: uppercase;
+}
+
+textarea {
+  resize: none;
+  wrap: "off";
+  overflow: auto;
+  outline: none;
+  -moz-appearance: none;
+  border-radius: 6px;
+}
+
+
+
+button {
+  border-radius: 6px;
 }

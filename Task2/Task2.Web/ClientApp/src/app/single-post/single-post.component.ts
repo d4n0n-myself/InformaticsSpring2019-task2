@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpService, Post} from "../services/httpService/http.service";
 import {AuthenticationService} from "../services/authentication/authentication.service";
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-single-post',
@@ -9,11 +10,13 @@ import {AuthenticationService} from "../services/authentication/authentication.s
 })
 export class SinglePostComponent implements OnInit {
 
-  constructor(private httpService: HttpService, private auth:AuthenticationService) { }
+  constructor(private httpService: HttpService, private auth:AuthenticationService, private _sanitizer: DomSanitizer) { }
 
   post : Post;
 
   commentText: string;
+
+  safeUrl: SafeResourceUrl;
 
   addComment() {
     this.httpService.addComment(this.commentText);
@@ -21,6 +24,7 @@ export class SinglePostComponent implements OnInit {
   ngOnInit() {
     this.httpService.getPost(localStorage.getItem('post')).subscribe(result => {
       this.post = result;
+      this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.post.videoUrl)
     });
     console.log(this.auth.getUserRole())
   }

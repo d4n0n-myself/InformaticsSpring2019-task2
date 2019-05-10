@@ -5,43 +5,42 @@
 
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
-
+        <button class="btn btn-danger" *ngIf="auth.getUserRole() === 'Admin'" (click)="deletePost()">Delete post</button><br><br>
         <h1 class="text">{{post.title}}</h1>
       </div>
       <div class="col-lg-9 col-md-9 col-sm-12">
 
 
-        <br>
+
 
         <div *ngIf="post.videoUrl !== 'undefined' && post.videoUrl !== null">
-          <iframe width="480" height="320" src="{{post.videoUrl}}" type="video/mp4">
-          </iframe>
+          <iframe width="560" height="315" [src]='safeUrl'  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        </div>
+
+        <div *ngIf="post.fileLink !== 'undefined' && post.fileLink !== null">
+          <a href="{{post.fileLink}}" class="lead">Get Tabs From Author</a>
+
         </div>
         <br>
-        <div *ngIf="post.fileLink !== 'undefined' && post.fileLink !== null">
-          <a href="{{post.fileLink}}" class="lead">Feel free to download extra files from author!</a>
+        <div>
+          <form ngForm="#commentForm">
+            <div class="form-group">
+              <textarea placeholder="Leave your thoughts..." [(ngModel)]="commentText" type="text" class="form-control" id="text"
+                     name="text" rows="3" style="width: 560px">
+              </textarea>
+            </div>
+
+            <button type="submit" (click)="addComment()" class="btn btn-success">Comment</button>
+          </form>
         </div>
       </div>
     </div>
-
-
   </div> <!-- /container -->
 </section>
 
-<button *ngIf="auth.getUserRole() === 'Admin'" (click)="deletePost()">Delete post</button>
 
-<div>
-  Add Comment
-  <br>
-  <form ngForm="#commentForm">
-    <div class="form-group">
-      <label for="text">Fill text:</label>
-      <input [(ngModel)]="commentText" type="text" class="form-control" id="text"
-             name="text">
-    </div>
-    <br>
-    <button type="submit" (click)="addComment()" class="btn btn-success">Submit</button>
-  </form>
-</div>
+
+
 
 <section class="footer-link"></section>

@@ -4,7 +4,8 @@
   <a *ngFor="let post of posts" class="col-1-4"
      (click)="goToPost(post.title)">
     <div class="module hero">
-      <h4>{{ (post.title.length>10)? (post.title | slice:0:10)+'..':(post.title) }}</h4>
+      <h4>{{ (post.title.length>100)? (post.title | slice:0:100)+'..':(post.title) }}</h4>
+
     </div>
   </a>
 </div>

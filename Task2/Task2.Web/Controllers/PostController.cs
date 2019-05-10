@@ -24,6 +24,7 @@ namespace Task2.Web.Controllers
 		[HttpPost]
 		public IActionResult Add([FromQuery] string title, string video, string fileLink)
 		{
+			video = video.Replace("watch?v=", "embed/");		
 			_repository.Add(title, video, fileLink);
 			return Ok();
 		}
