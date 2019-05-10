@@ -44,4 +44,10 @@
   </form>
 </div>
 
+
+<div style="border: 1px solid black" *ngFor="let comment of comments">
+  {{ comment.text }}
+  By {{ comment.userLogin }}
+</div>
+
 <section class="footer-link"></section>

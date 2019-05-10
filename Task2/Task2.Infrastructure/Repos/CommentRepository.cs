@@ -15,9 +15,9 @@ namespace Task2.Infrastructure.Repos
             _context = context;
         }
 
-        public void Add(User user, Guid postId, string text)
+        public void Add(User user, Guid post, string text)
         {
-            _context.Comments.Add(new Comment(user.Id, postId, text) { UserLogin = user.Login});
+            _context.Comments.Add(new Comment(user.Id, post, text) {UserLogin = user.Login});
             _context.SaveChanges();
         }
 
@@ -33,9 +33,11 @@ namespace Task2.Infrastructure.Repos
             _context.Comments.AsEnumerable();
 
 
-        public IEnumerable<Comment> GetCommentsForPost(Guid postId)
+        public IEnumerable<Comment> GetCommentsForPost(string postTitle)
         {
-            var comments = _context.Comments.Where(c => c.PostId.Equals(postId));
+            var post = _context.Posts.FirstOrDefault(p => p.Title == postTitle) ??
+                       throw new ArgumentException(nameof(postTitle));
+            var comments = _context.Comments.Where(c => c.PostId.Equals(post.Id)).ToArray();
             foreach (var comment in comments)
                 comment.UserLogin = _context.Users.First(u => u.Id == comment.UserId)?.Login;
             return comments;

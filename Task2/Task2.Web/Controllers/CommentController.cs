@@ -22,14 +22,12 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Add([FromQuery] string text)
+		public IActionResult Add([FromQuery] string text, string postId)
 		{
 			var userLoginClaim = HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserLogin") ?? throw new ArgumentException();
 			var user = _userService.Get(userLoginClaim.Value);
-			//TODO
-			// var postId = ....
 			
-			_repository.Add(text, user, Guid.Empty.ToString());
+			_repository.Add(text, user, postId);
 			return Ok();
 		}
 
@@ -41,11 +39,9 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult GetByPostId([FromQuery] string postId)
+		public IActionResult GetByPost([FromQuery] string post)
 		{
-			if (!Guid.TryParse(postId, out var guidPostId))
-				throw new ArgumentException("Failed to parse guid");
-			var comments = _repository.GetCommentsForPost(guidPostId);
+			var comments = _repository.GetCommentsForPost(post).Reverse();
 			return Ok(comments);
 		}
 

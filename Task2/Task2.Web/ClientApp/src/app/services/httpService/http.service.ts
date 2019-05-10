@@ -14,11 +14,10 @@ export class HttpService {
     this.baseUrl = baseUrl;
   }
 
-  receivedPosts = new Array<Post>();
   httpOptions = {headers: {'Authorization': localStorage.getItem('token')}};
 
-  addComment(text: string) {
-    var url = `${this.baseUrl}Comment/Add?text=${text}`;
+  addComment(text: string, postId:string) {
+    var url = `${this.baseUrl}Comment/Add?text=${text}&postId=${postId}`;
     this.http.post(url,null, this.httpOptions).subscribe(result => { });
   }
 
@@ -40,8 +39,12 @@ export class HttpService {
     this.http.post(`${this.baseUrl}Post/Delete?title=${postTitle}`, null, this.httpOptions).subscribe(result => {});
   }
 
-  getComments() : Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.baseUrl}Comment/GetAll`, this.httpOptions);
+  getComments() : Observable<PostComment[]> {
+    return this.http.get<PostComment[]>(`${this.baseUrl}Comment/GetAll`, this.httpOptions);
+  }
+
+  getCommentsForPost(post : string) : Observable<PostComment[]> {
+    return this.http.get<PostComment[]>(`${this.baseUrl}Comment/GetByPost?post=${post}`, this.httpOptions);
   }
 
   getPost(title:string) : Observable<Post> {
@@ -93,7 +96,7 @@ export interface Post {
   fileLink: string
 }
 
-export interface Comment {
+export interface PostComment {
   userLogin: string,
   text: string
 }

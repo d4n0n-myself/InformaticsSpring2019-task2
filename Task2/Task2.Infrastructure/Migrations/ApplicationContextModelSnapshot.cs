@@ -26,6 +26,8 @@ namespace Task2.Infrastructure.Migrations
 
                     b.Property<Guid>("PostId");
 
+                    b.Property<string>("PostTitle");
+
                     b.Property<string>("Text");
 
                     b.Property<Guid>("UserId");

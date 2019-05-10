@@ -27,11 +27,9 @@ namespace Task2.Domain
             _repository.Delete(guidUserId, guidPostId, text);
         }
 
-        public IEnumerable<Comment> GetCommentsForPost(Guid postId)
+        public IEnumerable<Comment> GetCommentsForPost(string post)
         {
-            if (postId == Guid.Empty)
-                throw new ArgumentException(nameof(postId));
-            return _repository.GetCommentsForPost(postId);
+            return _repository.GetCommentsForPost(post);
         }
 
         public IEnumerable<Comment> GetAll() => _repository.GetAll();

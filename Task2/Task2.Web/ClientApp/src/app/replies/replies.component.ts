@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {HttpService} from "../services/httpService/http.service";
-import {Comment} from "../services/httpService/http.service";
+import {PostComment as Comment} from "../services/httpService/http.service";
 
 @Component({
   selector: 'app-replies',
