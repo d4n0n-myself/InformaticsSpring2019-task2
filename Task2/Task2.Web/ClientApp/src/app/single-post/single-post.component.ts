@@ -29,14 +29,12 @@ export class SinglePostComponent implements OnInit {
   ngOnInit() {
     this.httpService.getPost(localStorage.getItem('post')).subscribe(result => {
       this.post = result;
-      this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.post.videoUrl)
-    });
-    this.httpService.getCommentsForPost(this.post.id).subscribe(result => {
-      this.comments = result as Comment[];
+      this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.post.videoUrl);
+      this.httpService.getCommentsForPost(this.post.id).subscribe(result => {
+        this.comments = result as Comment[];
+      });
     });
     this.role = this.auth.getUserRole();
-    console.log(this.post.id)
-    console.log(this.auth.getUserRole())
   }
 
   deletePost() {

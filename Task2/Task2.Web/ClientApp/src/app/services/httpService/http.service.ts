@@ -1,5 +1,5 @@
-import { Injectable, Inject } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
+import {Injectable, Inject} from '@angular/core'
+import {HttpClient} from '@angular/common/http'
 import {Observable} from "rxjs";
 import {Role} from "../../buy-subscription/buy-subscription.component";
 import {DelayService} from "../delay/delay.service";
@@ -19,7 +19,8 @@ export class HttpService {
 
   addComment(text: string, postId: string) {
     var url = `${this.baseUrl}Comment/Add?text=${text}&postId=${postId}`;
-    this.http.post(url,null, this.httpOptions).subscribe(result => { });
+    this.http.post(url, null, this.httpOptions).subscribe(result => {
+    });
   }
 
   addPost(title: string, video: string, file: string) {
@@ -31,33 +32,35 @@ export class HttpService {
     })
   }
 
-  buySubscription(newRole:number) : Observable<LoginModel> {
+  buySubscription(newRole: number): Observable<LoginModel> {
     let url = `${this.baseUrl}User/ChangeRole?userLogin=${localStorage.getItem('user')}&newRole=${newRole}`;
     return this.http.post<LoginModel>(url, null, this.httpOptions);
   }
 
-  deletePost(postTitle :string) {
-    this.http.post(`${this.baseUrl}Post/Delete?title=${postTitle}`, null, this.httpOptions).subscribe(result => {});
+  deletePost(postTitle: string) {
+    this.http.post(`${this.baseUrl}Post/Delete?title=${postTitle}`, null, this.httpOptions).subscribe(result => {
+    });
   }
 
-  getComments() : Observable<Comment[]> {
+  getComments(): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.baseUrl}Comment/GetAll`, this.httpOptions);
   }
 
-  getCommentsForPost(postId :string): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${this.baseUrl}Comment/GetByPostId?postId=${postId}`, this.httpOptions)
+  getCommentsForPost(postId: string): Observable<Comment[]> {
+    let url = `${this.baseUrl}Comment/Get?postId=${postId}`;
+    return this.http.get<Comment[]>(url, this.httpOptions)
   }
 
-  getPost(title:string) : Observable<Post> {
+  getPost(title: string): Observable<Post> {
     let url = `${this.baseUrl}Post/GetPost?title=${title}`;
     return this.http.get<Post>(url, this.httpOptions);
   }
 
-  getPosts() : Observable<Post[]> {
+  getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.baseUrl}Post/Get`, this.httpOptions);
   }
 
-  getPrices() : Observable<Role[]> {
+  getPrices(): Observable<Role[]> {
     return this.http.get<Role[]>('url', this.httpOptions);
   }
 

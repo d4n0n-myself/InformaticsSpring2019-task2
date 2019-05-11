@@ -41,12 +41,12 @@ namespace Task2.Web.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult GetByPostId([FromQuery] string postId)
+		public IActionResult Get([FromQuery] string postId)
 		{
 			if (!Guid.TryParse(postId, out var guidPostId))
 				throw new ArgumentException("Failed to parse guid");
 			var comments = _repository.GetCommentsForPost(guidPostId);
-			return Ok(comments);
+			return Ok(comments.ToArray());
 		}
 
 		[HttpGet]
