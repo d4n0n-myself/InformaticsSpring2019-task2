@@ -23,7 +23,8 @@
 
         </div>
         <br>
-        <div *ngIf="role === 'Senior' || role === 'Admin'">
+        <!--<div *ngIf="role === 'Senior' || role === 'Admin'">-->
+        <div>
           <form ngForm="#commentForm">
             <div class="form-group">
               <textarea placeholder="Leave your thoughts..." [(ngModel)]="commentText" type="text" class="form-control" id="text"
@@ -33,6 +34,23 @@
 
             <button type="submit" (click)="addComment()" class="btn btn-success">Comment</button>
           </form>
+        </div>
+
+        <div *ngFor="let comment of comments" >
+          <li class="comment even thread-even depth-1">
+            <article class="comment-body">
+              <footer class="comment-meta">
+                <div class="comment-author vcard">
+                  <b class="fn">{{comment.userLogin}} </b>
+                  <span class="says">says:</span>
+                </div>
+                <div class="comment-content">
+                  <p>{{comment.text}}</p>
+                </div>
+              </footer>
+
+            </article>
+          </li>
         </div>
       </div>
     </div>

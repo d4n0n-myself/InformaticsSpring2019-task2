@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpService, Post} from "../services/httpService/http.service";
+import {Comment, HttpService, Post} from "../services/httpService/http.service";
 import {AuthenticationService} from "../services/authentication/authentication.service";
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
@@ -20,15 +20,22 @@ export class SinglePostComponent implements OnInit {
 
   safeUrl: SafeResourceUrl;
 
+  comments: Array<Comment>;
+
+
   addComment() {
-    this.httpService.addComment(this.commentText);
+    this.httpService.addComment(this.commentText, this.post.id);
   }
   ngOnInit() {
     this.httpService.getPost(localStorage.getItem('post')).subscribe(result => {
       this.post = result;
       this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.post.videoUrl)
     });
+    this.httpService.getCommentsForPost(this.post.id).subscribe(result => {
+      this.comments = result as Comment[];
+    });
     this.role = this.auth.getUserRole();
+    console.log(this.post.id)
     console.log(this.auth.getUserRole())
   }
 
