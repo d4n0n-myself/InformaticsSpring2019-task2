@@ -10,7 +10,7 @@
       </button>
       <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]='{"show": isExpanded}'>
         <ul class="navbar-nav flex-grow">
-          <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <li *ngIf="role !== 'Admin'" class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
             <a class="nav-link text-dark" [routerLink]='["/replies"]'>Replies</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>
@@ -19,7 +19,7 @@
           <li *ngIf="role === 'Admin'" class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" [routerLink]='["/add-post"]'>Add Post</a>
           </li>
-          <li class="nav-item" [routerLinkActive]='["link-active"]'>
+          <li *ngIf="role !== 'Admin'" class="nav-item" [routerLinkActive]='["link-active"]'>
             <a class="nav-link text-dark" [routerLink]='["/subscribe"]'>Change Subscription</a>
           </li>
           <li class="nav-item" [routerLinkActive]='["link-active"]'>

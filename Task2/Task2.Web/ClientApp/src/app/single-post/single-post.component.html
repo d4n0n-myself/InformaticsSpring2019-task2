@@ -13,17 +13,17 @@
 
 
 
-        <div *ngIf="post.videoUrl !== 'undefined' && post.videoUrl !== null">
+        <div *ngIf="post.videoUrl !== 'undefined' && post.videoUrl !== null" >
           <iframe width="560" height="315" [src]='safeUrl'  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
         </div>
 
-        <div *ngIf="post.fileLink !== 'undefined' && post.fileLink !== null">
+        <div *ngIf="post.fileLink !== 'undefined' && post.fileLink !== null && role !== 'Junior'">
           <a href="{{post.fileLink}}" class="lead">Get Tabs From Author</a>
 
         </div>
         <br>
-        <div>
+        <div *ngIf="role === 'Senior' || role === 'Admin'">
           <form ngForm="#commentForm">
             <div class="form-group">
               <textarea placeholder="Leave your thoughts..." [(ngModel)]="commentText" type="text" class="form-control" id="text"

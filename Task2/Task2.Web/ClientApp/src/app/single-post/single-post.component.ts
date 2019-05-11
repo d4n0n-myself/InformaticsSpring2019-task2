@@ -16,6 +16,8 @@ export class SinglePostComponent implements OnInit {
 
   commentText: string;
 
+  role: string;
+
   safeUrl: SafeResourceUrl;
 
   addComment() {
@@ -26,10 +28,12 @@ export class SinglePostComponent implements OnInit {
       this.post = result;
       this.safeUrl = this._sanitizer.bypassSecurityTrustResourceUrl(this.post.videoUrl)
     });
+    this.role = this.auth.getUserRole();
     console.log(this.auth.getUserRole())
   }
 
   deletePost() {
     this.httpService.deletePost(this.post.title);
+
   }
 }
