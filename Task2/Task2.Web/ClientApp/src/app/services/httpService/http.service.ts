@@ -23,7 +23,7 @@ export class HttpService {
     });
   }
 
-  addPost(title: string, video: string, file: string) {
+  addPost(title: string, genre: string, performer: string, video: string, file: string) {
     var url = `${this.baseUrl}Post/Add?fileLink=${file}&video=${video}&title=${title}`;
     this.http.post(url, null, this.httpOptions).subscribe(() => {
 

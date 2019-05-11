@@ -6,7 +6,7 @@ namespace Task2.Infrastructure.ReposInterfaces
 {
     public interface IPostRepository
     {
-        void Add(string title, string videoUrl, string fileLink);
+        void Add(string title,  Genre genre, string performer, string videoUrl, string fileLink);
         void Delete(Post post);
         bool Contains(string header);
         Post Get(string title);

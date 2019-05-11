@@ -5,18 +5,34 @@
       <label for="title">Title:</label>
       <input [(ngModel)]="title" type="text" class="form-control" id="title"
              name="title">
-    </div><br>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="genre">Genre:</label>
+      <input [(ngModel)]="genre" type="text" class="form-control" id="genre"
+             name="genre">
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="performer">Performer:</label>
+      <input [(ngModel)]="performer" type="text" class="form-control" id="performer"
+             name="performer">
+    </div>
+    <br>
     <div class="form-group">
       <label for="videoUrl">Video Link:</label>
       <input [(ngModel)]="video" type="text" class="form-control" id="videoUrl"
              name="videoUrl">
-    </div><br>
+    </div>
+    <br>
     <div class="form-group">
       <label for="fileLink">File Link:</label>
       <input [(ngModel)]="file" type="text" class="form-control" id="fileLink"
              name="fileLink">
       <br><br>
-      <div class="buttoncenter"><button type="submit" (click)="Add()" class="btn btn-success">Create post</button></div>
+      <div class="buttoncenter">
+        <button type="submit" (click)="Add()" class="btn btn-success">Create post</button>
+      </div>
     </div>
   </div>
   <br>

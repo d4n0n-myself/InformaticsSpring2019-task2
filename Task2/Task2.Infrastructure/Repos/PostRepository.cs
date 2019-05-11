@@ -15,11 +15,11 @@ namespace Task2.Infrastructure.Repos
             _context = context;
         }
 
-        public void Add(string title, string videoUrl, string fileLink)
+        public void Add(string title, Genre genre, string performer, string videoUrl, string fileLink)
         {
             if (_context.Posts.Any(p => p.Title == title))
                 throw new ArgumentException("Name already exists!");
-            _context.Posts.Add(new Post(title, videoUrl, fileLink));
+            _context.Posts.Add(new Post(title, genre, performer, videoUrl, fileLink));
             _context.SaveChanges();
         }
 

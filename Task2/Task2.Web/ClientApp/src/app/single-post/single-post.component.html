@@ -5,16 +5,18 @@
 
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 post-title-block">
-        <button class="btn btn-danger" *ngIf="auth.getUserRole() === 'Admin'" (click)="deletePost()">Delete post</button><br><br>
+        <button class="btn btn-danger" *ngIf="auth.getUserRole() === 'Admin'" (click)="deletePost()">Delete post
+        </button>
+        <br><br>
         <h1 class="text">{{post.title}}</h1>
       </div>
       <div class="col-lg-9 col-md-9 col-sm-12">
 
 
-
-
-        <div *ngIf="post.videoUrl !== 'undefined' && post.videoUrl !== null" >
-          <iframe width="560" height="315" [src]='safeUrl'  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div *ngIf="post.videoUrl !== 'undefined' && post.videoUrl !== null">
+          <iframe width="560" height="315" [src]='safeUrl'
+                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
 
         </div>
 
@@ -23,12 +25,12 @@
 
         </div>
         <br>
-        <!--<div *ngIf="role === 'Senior' || role === 'Admin'">-->
-        <div>
+        <div *ngIf="role === 'Senior' || role === 'Admin'">
           <form ngForm="#commentForm">
             <div class="form-group">
-              <textarea placeholder="Leave your thoughts..." [(ngModel)]="commentText" type="text" class="form-control" id="text"
-                     name="text" rows="3" style="width: 560px">
+              <textarea placeholder="Leave your thoughts..." [(ngModel)]="commentText" type="text" class="form-control"
+                        id="text"
+                        name="text" rows="3" style="width: 560px">
               </textarea>
             </div>
 
@@ -36,7 +38,7 @@
           </form>
         </div>
 
-        <div *ngFor="let comment of comments" >
+        <div *ngFor="let comment of comments">
           <li class="comment even thread-even depth-1">
             <article class="comment-body">
               <footer class="comment-meta">
@@ -56,9 +58,6 @@
     </div>
   </div> <!-- /container -->
 </section>
-
-
-
 
 
 <section class="footer-link"></section>

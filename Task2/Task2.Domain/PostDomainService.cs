@@ -15,7 +15,7 @@ namespace Task2.Domain
             _repos = repos;
         }
 
-        public void Add(string title, string videoUrl, string fileLink)
+        public void Add(string title,  Genre genre, string performer, string videoUrl, string fileLink)
         {
             if (new[] {title, videoUrl, fileLink}.Any(x => x == null))
                 throw new ArgumentNullException();
@@ -24,7 +24,7 @@ namespace Task2.Domain
             if (videoUrl != "undefined" && !Uri.TryCreate(videoUrl, UriKind.Absolute, out var url))
                 throw new ArgumentException($"Bad URL: {videoUrl}");
 
-            _repos.Add(title, videoUrl, fileLink);
+            _repos.Add(title, genre, performer, videoUrl, fileLink);
         }
 
         public bool ContainPost(string header)
