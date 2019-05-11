@@ -7,11 +7,19 @@
     <ItemGroup>
       <PackageReference Include="Castle.DynamicProxy" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.2" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Task2.Core\Task2.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="appconfig.json">
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,3 @@
+{
+  "ConnectionString":"Host=ec2-54-247-70-127.eu-west-1.compute.amazonaws.com;Database=d8s1metv8k5t68;Username=fmgqjztvtqcccu;Port=5432;Password=fb7d3fac31cb3946ff76273de5a78106d9a433dab13f3a9f66a2de30c10e461a;SslMode=Require;Trust Server Certificate=True"
+}
