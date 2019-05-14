@@ -26,13 +26,13 @@ namespace Task2.Web
 			services.AddAuthorization(options =>
 			{
 				options.AddPolicy("Admin",
-					policy => { policy.RequireClaim("Role", "1"); });
+					policy => { policy.RequireClaim("Role", "Admin"); });
 				options.AddPolicy("Junior",
-					policy => { policy.RequireClaim("Role", "4"); });
+					policy => { policy.RequireClaim("Role", "Junior", "Middle","Senior", "Admin"); });
 				options.AddPolicy("Middle",
-					policy => { policy.RequireClaim("Role", "3"); });
+					policy => { policy.RequireClaim("Role", "Middle","Senior", "Admin"); });
 				options.AddPolicy("Senior",
-					policy => { policy.RequireClaim("Role", "2"); });
+					policy => { policy.RequireClaim("Role", "Senior", "Admin"); });
 				options.AddPolicy("All",
 					policy => { policy.RequireClaim("Role"); });
 			});

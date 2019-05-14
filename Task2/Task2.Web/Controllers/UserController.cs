@@ -1,5 +1,4 @@
-using System;
-using System.Security.Cryptography.Xml;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
 using Task2.Domain;
@@ -21,6 +20,7 @@ namespace Task2.Web.Controllers
             _tokenService = tokenService;
         }
 
+        [Authorize("Admin")]
         [HttpPost]
         public IActionResult Add(User user)
         {
@@ -56,6 +56,7 @@ namespace Task2.Web.Controllers
             return Ok(user);
         }
 
+        [Authorize("Admin")]        
         [HttpPost]
         public IActionResult Delete(string login)
         {
