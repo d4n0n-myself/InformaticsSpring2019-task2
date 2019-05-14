@@ -15,6 +15,7 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="row">
+                <!-- Junior -->
                 <div class="col-md-4">
                   <div class="item-box-blog">
                     <div class="item-box-blog-image">
@@ -27,7 +28,7 @@
                       <!--Heading-->
                       <div class="item-box-blog-heading">
 
-                          <h5>Junior Level</h5>
+                        <h5>Junior Level</h5>
 
                       </div>
                       <!--Data-->
@@ -38,11 +39,19 @@
                       <div class="item-box-blog-text">
                         <p>You'll be able to play videos!<br><br></p>
                       </div>
-                      <div class="mt"><button class="btn btn-success" (click)="buySubscription(2)" style="color: #FFFFFF">Become Junior</button></div>
+                      <div class="mt" *ngIf="role !== 'Junior'">
+                        <button class="btn btn-success" (click)="buySubscription(2)" style="color: #FFFFFF">Become
+                          Junior
+                        </button>
+                      </div>
+                      <div class="mt" *ngIf="role === 'Junior'">
+                        Your subscription
+                      </div>
                       <!--Read More Button-->
                     </div>
                   </div>
                 </div>
+                <!-- Middle-->
                 <div class="col-md-4">
                   <div class="item-box-blog">
                     <div class="item-box-blog-image">
@@ -55,7 +64,7 @@
                       <!--Heading-->
                       <div class="item-box-blog-heading">
 
-                          <h5>Middle Level</h5>
+                        <h5>Middle Level</h5>
 
                       </div>
                       <!--Data-->
@@ -66,11 +75,19 @@
                       <div class="item-box-blog-text">
                         <p>You'll be able to play videos and download tabs!</p>
                       </div>
-                      <div class="mt"><button class="btn btn-success" (click)="buySubscription(3)" style="color: #FFFFFF">Become Middle</button></div>
+                      <div class="mt" *ngIf="role !== 'Middle'">
+                        <button class="btn btn-success" (click)="buySubscription(3)" style="color: #FFFFFF">Become
+                          Middle
+                        </button>
+                      </div>
+                      <div class="mt" *ngIf="role === 'Middle'">
+                        Your subscription
+                      </div>
                       <!--Read More Button-->
                     </div>
                   </div>
                 </div>
+                <!-- Senior-->
                 <div class="col-md-4">
                   <div class="item-box-blog">
                     <div class="item-box-blog-image">
@@ -83,7 +100,7 @@
                       <!--Heading-->
                       <div class="item-box-blog-heading">
 
-                          <h5>Senior Level</h5>
+                        <h5>Senior Level</h5>
 
                       </div>
                       <!--Data-->
@@ -94,7 +111,14 @@
                       <div class="item-box-blog-text">
                         <p>You'll be able to play videos and download tabs and ask questions!</p>
                       </div>
-                      <div class="mt"><button class="btn btn-success" (click)="buySubscription(4)" style="color: #FFFFFF">Become Senior</button></div>
+                      <div class="mt" *ngIf="role !== 'Senior'">
+                        <button class="btn btn-success" (click)="buySubscription(4)" style="color: #FFFFFF">Become
+                          Senior
+                        </button>
+                      </div>
+                      <div class="mt" *ngIf="role === 'Senior'">
+                        Your subscription
+                      </div>
                       <!--Read More Button-->
                     </div>
                   </div>
@@ -112,4 +136,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div style="float: right; margin: 25px">
+  <button (click)="continue()">Continue</button>
 </div>
