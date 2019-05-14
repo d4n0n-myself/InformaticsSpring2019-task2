@@ -18,6 +18,8 @@ import {LoginLayoutComponent} from "./login-layout/login-layout.component";
 import {RegisterComponent} from "./register/register.component";
 import { BuySubscriptionComponent } from './buy-subscription/buy-subscription.component';
 import {RepliesComponent} from "./replies/replies.component";
+import {FilterPipe} from "./posts-list/filter.pipe";
+import {SearchingPipe} from "./posts-list/filter2.pipe";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {RepliesComponent} from "./replies/replies.component";
     LoginLayoutComponent,
     RegisterComponent,
     BuySubscriptionComponent,
-    RepliesComponent
+    RepliesComponent,
+    FilterPipe,
+    SearchingPipe,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

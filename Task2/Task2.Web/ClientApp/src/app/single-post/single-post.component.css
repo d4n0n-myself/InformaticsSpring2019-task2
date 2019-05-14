@@ -58,3 +58,6 @@ textarea {
 button {
   border-radius: 6px;
 }
+ ul, li{
+   list-style-type: none;
+ }
