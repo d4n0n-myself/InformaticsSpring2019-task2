@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Comment, HttpService, Post} from "../services/httpService/http.service";
 import {AuthenticationService} from "../services/authentication/authentication.service";
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-single-post',
@@ -10,7 +11,7 @@ import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 })
 export class SinglePostComponent implements OnInit {
 
-  constructor(private httpService: HttpService, private auth:AuthenticationService, private _sanitizer: DomSanitizer) { }
+  constructor(private httpService: HttpService, private auth:AuthenticationService, private _sanitizer: DomSanitizer,private router: Router) { }
 
   post : Post;
 
@@ -39,6 +40,6 @@ export class SinglePostComponent implements OnInit {
 
   deletePost() {
     this.httpService.deletePost(this.post.title);
-
+    location.replace('/posts')
   }
 }

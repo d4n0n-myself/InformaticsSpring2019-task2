@@ -24,7 +24,7 @@ export class HttpService {
   }
 
   addPost(title: string, genre: string, performer: string, video: string, file: string) {
-    var url = `${this.baseUrl}Post/Add?fileLink=${file}&video=${video}&title=${title}`;
+    var url = `${this.baseUrl}Post/Add?fileLink=${file}&video=${video}&title=${title}&genre=${genre}&performer=${performer}`;
     this.http.post(url, null, this.httpOptions).subscribe(() => {
 
     }, error => {
@@ -97,10 +97,21 @@ export interface Post {
   id: string;
   title: string;
   videoUrl: string;
-  fileLink: string
+  fileLink: string;
+  performer: string;
+  genre: Genre;
 }
 
 export interface Comment {
   userLogin: string,
   text: string
+}
+
+export enum Genre {
+  Rock = 1,
+  Jazz = 2,
+  Blues = 3,
+  HeavyMetal = 4,
+  Indy = 5,
+  Other = 6
 }

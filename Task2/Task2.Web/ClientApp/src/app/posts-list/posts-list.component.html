@@ -1,11 +1,12 @@
 <h3>All posts</h3>
 
 <div class="grid grid-pad">
-  <a *ngFor="let post of posts" class="col-1-4"
-     (click)="goToPost(post.title)">
+  <div *ngFor="let post of posts" style="width: 100%" class="col-1-4"
+       (click)="goToPost(post.title)">
     <div class="module hero">
-      <h4>{{ (post.title.length>100)? (post.title | slice:0:100)+'..':(post.title) }}</h4>
-
+        <h4>{{ (post.title.length > 100) ? (post.title | slice:0:100) + '..' : (post.title) }}</h4> <br>
+        <h6>By {{ post.performer }}</h6><br>
+        <h6> Genre : {{  genre(post.genre) }} </h6>
     </div>
-  </a>
+  </div>
 </div>

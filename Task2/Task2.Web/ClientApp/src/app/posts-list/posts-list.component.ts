@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpService, Post} from "../services/httpService/http.service";
+import {Genre, HttpService, Post} from "../services/httpService/http.service";
 import {Router} from "@angular/router";
 import {DelayService} from "../services/delay/delay.service";
 
@@ -26,5 +26,9 @@ export class PostsListComponent implements OnInit {
   goToPost(title: string) {
     localStorage.setItem('post', title);
     this.router.navigate(['/single']);
+  }
+
+  genre(num : number) {
+    return Genre[num];
   }
 }
