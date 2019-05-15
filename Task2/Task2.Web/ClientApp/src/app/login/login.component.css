@@ -161,7 +161,7 @@ a {
   box-shadow: none;
 }
 
-.btn-success :focus{
+.btn-success :focus {
   color: #fff;
   background-color: #1ccc44;
   border-color: #1ccc44;

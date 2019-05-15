@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Task2.Core.Entities;
 using Task2.Domain;
 using Task2.Web.Filters;
 

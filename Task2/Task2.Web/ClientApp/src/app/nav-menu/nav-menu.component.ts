@@ -6,7 +6,7 @@ import {AuthenticationService} from "../services/authentication/authentication.s
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent implements OnInit{
+export class NavMenuComponent implements OnInit {
   constructor(public auth: AuthenticationService) {
   }
 

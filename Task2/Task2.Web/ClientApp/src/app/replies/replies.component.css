@@ -1,4 +1,4 @@
-h2{
+h2 {
   padding-top: 10px;
   padding-bottom: 20px;
   margin-outside: 25px;
@@ -9,16 +9,18 @@ h2{
   margin-right: 35%;
 }
 
-.comment-author{
+.comment-author {
   font-size: 16pt;
   margin-bottom: 12px;
   line-height: 22px;
   font-weight: 500;
 }
+
 a, address, area, aside, basefont, big, body, dd, div, dl, dt, h1, h2, h3, h4, h5, h6, html, img, label, p, small, span, sub, sup, table, td, tr {
   margin: 0;
   padding: 0;
 }
+
 *, :after, :before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -32,11 +34,13 @@ li {
   line-height: 20px;
   font-family: 'Muli', sans-serif;
 }
+
 li, ol, ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
+
 .comment-content {
   border: 1px solid #ddd;
   padding: 5px 10px;
@@ -44,17 +48,21 @@ li, ol, ul {
   border-radius: 6px;
   font-family: 'Muli', sans-serif;
 }
+
 .comment-body footer {
   background: none;
   float: none;
   padding: inherit;
-}footer {
-   /*background: #303030;*/
-   width: 100%;
-   padding: 15px 60px 20px;
-   float: left;
-   /*color: #989898;*/
- }
+}
+
+footer {
+  /*background: #303030;*/
+  width: 100%;
+  padding: 15px 60px 20px;
+  float: left;
+  /*color: #989898;*/
+}
+
 .comment-metadata {
   display: none;
 }
@@ -63,7 +71,7 @@ li, ol, ul {
 
 }
 
-.comment-list{
+.comment-list {
 
   margin-right: 40%;
 }

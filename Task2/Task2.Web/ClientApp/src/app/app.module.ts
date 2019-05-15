@@ -1,10 +1,10 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {RouterModule} from '@angular/router';
+import {AppComponent} from './app.component';
+import {NavMenuComponent} from './nav-menu/nav-menu.component';
 import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 import {routes} from "./app.routes";
 import {LoginComponent} from "./login/login.component";
@@ -16,10 +16,10 @@ import {AddPostComponent} from "./add-post/add-post.component";
 import {HomeLayoutComponent} from "./home-layout/home-layout.component";
 import {LoginLayoutComponent} from "./login-layout/login-layout.component";
 import {RegisterComponent} from "./register/register.component";
-import { BuySubscriptionComponent } from './buy-subscription/buy-subscription.component';
+import {BuySubscriptionComponent} from './buy-subscription/buy-subscription.component';
 import {RepliesComponent} from "./replies/replies.component";
-import {FilterPipe} from "./posts-list/filter.pipe";
-import {SearchingPipe} from "./posts-list/filter2.pipe";
+import {FilterPipe} from "./pipes/filter.pipe";
+import {SearchingPipe} from "./pipes/searching.pipe";
 
 @NgModule({
   declarations: [
@@ -35,10 +35,10 @@ import {SearchingPipe} from "./posts-list/filter2.pipe";
     BuySubscriptionComponent,
     RepliesComponent,
     FilterPipe,
-    SearchingPipe,
+    SearchingPipe
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(routes),
@@ -50,7 +50,8 @@ import {SearchingPipe} from "./posts-list/filter2.pipe";
       }
     }),
   ],
-  providers: [ AuthGuardService, AuthenticationService, JwtHelperService ],
+  providers: [AuthGuardService, AuthenticationService, JwtHelperService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

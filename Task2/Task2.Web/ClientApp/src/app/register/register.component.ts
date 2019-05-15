@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../services/httpService/http.service";
 import {Router} from "@angular/router";
 import {DelayService} from "../services/delay/delay.service";

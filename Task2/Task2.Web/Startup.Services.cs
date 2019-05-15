@@ -12,11 +12,11 @@ namespace Task2.Web
 		public void AddServices(IServiceCollection services)
 		{
 			services.AddScoped<ApplicationContext>();
-		
+
 			services.AddScoped<IPostRepository, PostRepository>();
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<ICommentRepository, CommentRepository>();
-			
+
 			services.AddScoped<UserDomainService>();
 			services.AddScoped<PostDomainService>();
 			services.AddScoped<CommentDomainService>();

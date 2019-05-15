@@ -1,66 +1,59 @@
 <h3>All posts</h3>
-<!--{{all_posts.length}}-->
-<!--{{posts.length}}-->
-<!--{{selected_count}}-->
-
-<!--<p>sel g{{selected_genres}}</p>-->
-<!--{{posts}}-->
-
-
 <div>
   <!-- Heading Title -->
   <!--<h4 class="app-heading">Select Available Games Below:</h4>-->
 
   <!-- Search Field -->
-  <div>
-    <div class="filter-wrap">
-      <input [(ngModel)]="searchText" placeholder="Search for performer" class="filter-input">
-      <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
+  <div style="margin: 5px;">
+    <div style="float: left; width: 89%; height: 40px;">
+      <input [(ngModel)]="searchText" placeholder="Search for performer" class="form-control">
     </div>
+    <button style="float: right; width: 10%;height: 40px" [disabled]="!(searchText.length>0)" (click)="clearFilter()">
+      X
+    </button>
   </div>
-<br>
-  <div>
-    <div class="filter-wrap">
-      <input [(ngModel)]="searchTextt" placeholder="Search for specific song" class="filter-input">
-      <span class="filter-clear" *ngIf="searchText.length>0" (click)="clearFilter()">X</span>
+  <div style="clear:both;"></div>
+  <div style="margin: 5px;">
+    <div style="float: left; width: 89%;height: 40px">
+      <input [(ngModel)]="searchTextt" placeholder="Search for specific song" class="form-control">
     </div>
+    <button style="float: right; width: 10%; height: 40px;" class="filter-clear" [disabled]="!(searchText.length>0)"
+            (click)="clearFilter()">X
+    </button>
   </div>
+  <div style="clear:both;"></div>
   <!-- Clear Link -->
 
   <!-- Game List -->
   <div class="table">
-  <ul id="horizontal-list">
-    <h6>Filter Post By Genre:</h6>
-    <li *ngFor="let g of genres " class="game-item">
-      <label class="checkbox-inline">
-      <input (change)="getSelected()" type="checkbox"
-             class="example"
-             name="genres"
-             value="{{g.id}}"
-             [(ngModel)]="g.selected"/>
-      <span class="game-text">{{g.name}}</span>
-      </label>
-    </li>
-    <button type="reset" class="clear-selection" title="Click to Clear Selections" (click)="showAllPosts()">Show All Posts</button>
-  </ul>
+    <ul style="float: left" id="horizontal-list">
+      <h6>Filter Post By Genre:</h6>
+      <li *ngFor="let g of genres " class="game-item">
+        <label class="checkbox-inline">
+          <input (change)="getSelected()" type="checkbox"
+                 class="example"
+                 name="genres"
+                 value="{{g.id}}"
+                 [(ngModel)]="g.selected"/>
+          <span class="game-text">{{g.name}}</span>
+        </label>
+      </li>
+    </ul>
+    <button class="btn btn-success" style="float:right; margin: 5px" type="reset" title="Click to Clear Selections"
+            (click)="showAllPosts()">Show All
+      Posts
+    </button>
   </div>
-
-  <!--&lt;!&ndash; Selected Games&ndash;&gt;-->
-  <!--<div class="selected-games-wrap">-->
-    <!--<div class="selected-game" *ngFor="let s of selected_genres" >-->
-      <!--<span>{{s.name}} <span class="delete-game" (click)="deleteGame(s.id)" title="Click to delete">X</span></span>-->
-    <!--</div>-->
-  <!--</div>-->
-
 </div>
 
 <div class="grid grid-pad">
   <div *ngFor="let post of (posts | filter : searchText) |searching : searchTextt" style="width: 100%" class="col-1-4"
        (click)="goToPost(post.title)">
     <div class="module hero">
-        <h4>{{ (post.title.length > 100) ? (post.title | slice:0:100) + '..' : (post.title) | filter : searchText }}</h4> <br>
-        <h6>By {{ post.performer | filter : searchText }}</h6><br>
-        <h6> Genre : {{  genre(post.genre) | filter : searchText}} </h6>
+      <h4>{{ (post.title.length > 100) ? (post.title | slice:0:100) + '..' : (post.title) | filter : searchText }}</h4>
+      <br>
+      <h6>By {{ post.performer | filter : searchText }}</h6><br>
+      <h6> Genre : {{  genre(post.genre) | filter : searchText}} </h6>
     </div>
   </div>
 </div>

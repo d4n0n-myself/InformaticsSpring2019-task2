@@ -26,9 +26,9 @@ namespace Task2.Web
 			AddAuthorization(services);
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-			
+
 			AddServices(services);
-			
+
 			services.AddSwaggerGen(options =>
 			{
 				options.SwaggerDoc("1.0.0", new OpenApiInfo()

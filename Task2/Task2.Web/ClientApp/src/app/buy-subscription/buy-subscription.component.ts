@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpService} from "../services/httpService/http.service";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../services/authentication/authentication.service";
@@ -27,7 +27,7 @@ export class BuySubscriptionComponent implements OnInit {
 
   buySubscription(id: number) {
     this.http.buySubscription(id).subscribe(result => {
-      localStorage.setItem('token',result.token);
+      localStorage.setItem('token', result.token);
     });
     this.continue();
   }

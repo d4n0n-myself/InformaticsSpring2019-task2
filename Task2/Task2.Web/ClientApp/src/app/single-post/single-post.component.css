@@ -1,18 +1,17 @@
 
-
 section {
   width: 100%;
   float: left;
 }
 
 /*.banner-section {*/
-  /*background-image: url("https://static.pexels.com/photos/373912/pexels-photo-373912.jpeg");*/
-  /*background-size: cover;*/
-  /*height: 380px;*/
-  /*left: 0;*/
-  /*position: absolute;*/
-  /*top: 0;*/
-  /*background-position: 0;*/
+/*background-image: url("https://static.pexels.com/photos/373912/pexels-photo-373912.jpeg");*/
+/*background-size: cover;*/
+/*height: 380px;*/
+/*left: 0;*/
+/*position: absolute;*/
+/*top: 0;*/
+/*background-position: 0;*/
 /*}*/
 
 .post-title-block {
@@ -26,8 +25,6 @@ section {
   font-size: 30pt;
   text-transform: capitalize;
 }
-
-
 
 
 .footer-link {
@@ -54,10 +51,10 @@ textarea {
 }
 
 
-
 button {
   border-radius: 6px;
 }
- ul, li{
-   list-style-type: none;
- }
+
+ul, li {
+  list-style-type: none;
+}

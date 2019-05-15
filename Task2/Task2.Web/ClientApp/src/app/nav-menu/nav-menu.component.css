@@ -1,6 +1,7 @@
 header {
   font-family: 'Muli', sans-serif;
 }
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -12,7 +13,6 @@ a.navbar-brand {
 html {
   font-size: 14px;
 }
-
 
 
 button {

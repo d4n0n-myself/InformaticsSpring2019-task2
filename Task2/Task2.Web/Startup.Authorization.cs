@@ -28,9 +28,9 @@ namespace Task2.Web
 				options.AddPolicy("Admin",
 					policy => { policy.RequireClaim("Role", "Admin"); });
 				options.AddPolicy("Junior",
-					policy => { policy.RequireClaim("Role", "Junior", "Middle","Senior", "Admin"); });
+					policy => { policy.RequireClaim("Role", "Junior", "Middle", "Senior", "Admin"); });
 				options.AddPolicy("Middle",
-					policy => { policy.RequireClaim("Role", "Middle","Senior", "Admin"); });
+					policy => { policy.RequireClaim("Role", "Middle", "Senior", "Admin"); });
 				options.AddPolicy("Senior",
 					policy => { policy.RequireClaim("Role", "Senior", "Admin"); });
 				options.AddPolicy("All",

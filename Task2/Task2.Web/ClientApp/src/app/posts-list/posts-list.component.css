@@ -5,27 +5,33 @@ body, h3 {
   word-break: break-all;
   padding: 30px;
 }
+
 [class*='col-'] {
   float: left;
   padding-right: 20px;
   padding-bottom: 20px;
 }
+
 [class*='col-']:last-of-type {
   padding-right: 0;
 }
+
 a {
   text-decoration: none;
 }
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 h3 {
   text-align: center;
   font-family: 'Muli', sans-serif;
   margin-bottom: 0;
 }
+
 h4 {
   position: center;
   text-align: justify-all;
@@ -34,11 +40,13 @@ h4 {
   align-items: center;
   align-content: center;
 }
+
 .grid {
   margin: 0;
   align-items: center;
   align-content: center;
 }
+
 .col-1-4 {
   width: 25%;
   text-align: center;
@@ -62,29 +70,35 @@ h4 {
   align-items: center;
   margin: auto;
 }
+
 .module:hover {
   background-color: #EEE;
   cursor: pointer;
   color: #32cb00;
 }
+
 .grid-pad {
   padding: 10px 0;
   align-content: center;
   align-items: center;
 }
+
 .grid-pad > [class*='col-']:last-of-type {
   padding-right: 20px;
 }
+
 @media (max-width: 600px) {
   .module {
     font-size: 10px;
     max-height: 75px;
-    }
+  }
 }
+
 @media (max-width: 1024px) {
   .grid {
     margin: 0;
   }
+
   .module {
     min-width: 60px;
   }
@@ -93,8 +107,9 @@ h4 {
 ul {
   list-style-type: none;
 }
+
 .table {
-  display: table;   /* Allow the centering to work */
+  display: table; /* Allow the centering to work */
   margin: 0 auto;
 }
 
@@ -103,10 +118,23 @@ ul#horizontal-list {
   list-style: none;
   padding-top: 20px;
 }
+
 ul#horizontal-list li {
   display: inline;
   margin-outside: 15px;
   margin: 15px;
 }
 
+button {
+  background: #b0ff57;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: none;
+  padding: 12px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+}
 

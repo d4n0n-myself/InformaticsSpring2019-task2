@@ -11,9 +11,10 @@ import {Router} from "@angular/router";
 })
 export class SinglePostComponent implements OnInit {
 
-  constructor(private httpService: HttpService, private auth:AuthenticationService, private _sanitizer: DomSanitizer,private router: Router) { }
+  constructor(private httpService: HttpService, private auth: AuthenticationService, private _sanitizer: DomSanitizer, private router: Router) {
+  }
 
-  post : Post;
+  post: Post;
 
   commentText: string;
 
@@ -27,6 +28,7 @@ export class SinglePostComponent implements OnInit {
   addComment() {
     this.httpService.addComment(this.commentText, this.post.id);
   }
+
   ngOnInit() {
     this.httpService.getPost(localStorage.getItem('post')).subscribe(result => {
       this.post = result;

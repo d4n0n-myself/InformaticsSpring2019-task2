@@ -1,8 +1,5 @@
 using System;
-using System.Linq;
-using System.Security;
-using System.Security.Cryptography;
-using System.Text;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Task2.Core.Entities;
 using Task2.Domain;
@@ -11,6 +8,7 @@ using Task2.Web.Services;
 
 namespace Task2.Web.Controllers
 {
+	[AllowAnonymous]
 	[InternalErrorFilter]
 	[Route("[controller]/[action]")]
 	public class TokenController : Controller

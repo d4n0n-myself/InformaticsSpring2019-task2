@@ -7,6 +7,7 @@ using Task2.Web.Services;
 
 namespace Task2.Web.Controllers
 {
+    [Authorize]
     [InternalErrorFilter]
     [Route("[controller]/[action]")]
     public class UserController : Controller
