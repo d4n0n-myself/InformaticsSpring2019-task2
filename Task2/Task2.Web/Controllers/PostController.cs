@@ -20,7 +20,7 @@ namespace Task2.Web.Controllers
             _repository = repository;
         }
 
-//		[Authorize("Admin")]
+		[Authorize("Admin")]
         [HttpPost]
         public IActionResult Add([FromQuery] string title, string genre, string performer, string video,
             string fileLink)
@@ -37,6 +37,7 @@ namespace Task2.Web.Controllers
             return Ok(response);
         }
 
+        [Authorize("Admin")]
         [HttpPost]
         public IActionResult Delete([FromQuery] string title)
         {
@@ -56,6 +57,7 @@ namespace Task2.Web.Controllers
         [HttpGet]
         public Post[] Get() => _repository.Get();
 
+        [Authorize("Admin")]
         [HttpPost]
         public IActionResult Update(Post post)
         {
